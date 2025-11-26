@@ -10,101 +10,144 @@ interface AppData {
   title: string;
   icon: LucideIcon;
   isOpen: boolean;
-  initialX: number;
-  initialY: number;
-  content: string;
+  isMinimized: boolean;
+  isMaximized: boolean;
+  x: number;
+  y: number;
   z: number;
+  content: string;
 }
 
 function Desktop() {
   // State: Which apps exist and are they open?
-  const [maxIndex, setMaxIndex] = useState(2);
+  const [maxZ, setMaxZ] = useState(2);
   const [apps, setApps] = useState<AppData[]>([
     {
       id: "safari",
       title: "Safari",
       icon: Globe,
       isOpen: true,
-      initialX: 100,
-      initialY: 50,
-      content: "Welcome to the internet!",
+      isMinimized: false,
+      isMaximized: false,
+      x: 100,
+      y: 50,
       z: 1,
+      content:
+        "Safari is Apple's web browser. It is built on the WebKit engine.",
     },
     {
       id: "terminal",
       title: "Terminal",
       icon: Terminal,
-      isOpen: true,
-      initialX: 200,
-      initialY: 150,
-      content: "echo 'Hello World'",
+      isOpen: false,
+      isMinimized: false,
+      isMaximized: false,
+      x: 200,
+      y: 150,
       z: 1,
+      content:
+        "Last login: Tue Nov 25 10:00:00 on ttys000\nType 'help' for more information.",
     },
-
     {
       id: "Files",
-      title: "files",
+      title: "Files",
       icon: Terminal,
-      isOpen: true,
-      initialX: 200,
-      initialY: 150,
-      content: "echo 'Hello World'",
+      isOpen: false,
+      isMinimized: false,
+      isMaximized: false,
+      x: 200,
+      y: 150,
       z: 1,
+      content: "Files Type 'help' for more information.",
     },
   ]);
 
-  // Toggle App Function
-  const toggleApp = (id: string) => {
+  // Partial<T> is a utility type that takes another type T and makes all of its properties optional.
+  const updateApp = (id: string, updates: Partial<AppData>) => {
     setApps((prev) =>
-      prev.map((app) => (app.id === id ? { ...app, isOpen: !app.isOpen } : app))
+      prev.map((app) => (app.id === id ? { ...app, ...updates } : app))
     );
   };
 
-  const bringToFront = (id: string) => {
-    setMaxIndex((prevIndex) => {
-      const zIndex = prevIndex + 1;
-      setApps((prevApps) =>
-        prevApps.map((app) => (app.id === id ? { ...app, z: zIndex } : app))
-      );
-      return zIndex;
-    });
+  const handleFocus = (id: string) => {
+    // bring app to the front
+    setMaxZ((z) => z + 1);
+    updateApp(id, { z: maxZ + 1 });
+  };
+
+  const handleOpen = (id: string) => {
+    const app = apps.find((app) => app.id === id);
+    if (!app) return;
+
+    if (!app.isOpen) {
+      updateApp(id, { isOpen: true, isMinimized: false, z: maxZ + 1 });
+      setMaxZ((z) => z + 1);
+    } else if (app.isMinimized) {
+      updateApp(id, { isMinimized: false, z: maxZ + 1 });
+      setMaxZ((z) => z + 1);
+    } else {
+      updateApp(id, { z: maxZ + 1 });
+      setMaxZ((z) => z + 1);
+    }
+  };
+
+  const handleClose = (id: string) =>
+    updateApp(id, { isOpen: false, isMaximized: false });
+
+  const handleMinimize = (id: string) => updateApp(id, { isMinimized: true });
+
+  const handleMaximize = (id: string) => {
+    setApps((prev) =>
+      prev.map((a) => (a.id === id ? { ...a, isMaximized: !a.isMaximized } : a))
+    );
   };
 
   return (
-    <div className="bg-violet-200  h-dvh">
-      {/* Render Windows */}
+    <div className="h-screen w-screen bg-[url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=3270&auto=format&fit=crop')] bg-cover bg-center relative overflow-hidden font-sans">
+      {/* Windows Layer */}
       {apps.map((app) => (
         <Window
           key={app.id}
-          id={app.id}
-          title={app.title}
-          x={app.initialX}
-          y={app.initialY}
-          isOpen={app.isOpen}
-          content={app.content}
-          onClose={toggleApp}
-          onFocus={bringToFront}
-          z={app.z}
+          {...app}
+          onClose={handleClose}
+          onMinimize={handleMinimize}
+          onMaximize={handleMaximize}
+          onFocus={handleFocus}
         />
       ))}
 
       {/* Dock */}
-      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-white/20 backdrop-blur-md border border-white/20 p-2 rounded-2xl flex gap-4 shadow-xl">
+      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-white/20 backdrop-blur-2xl border border-white/20 p-2 rounded-2xl flex gap-3 shadow-2xl z-[9999]">
         {apps.map((app) => (
           <button
             key={app.id}
-            onClick={() => toggleApp(app.id)}
-            className={`p-3 rounded-xl transition-all duration-200 ${
-              app.isOpen
-                ? "bg-white/40 shadow-inner"
-                : "bg-transparent hover:bg-white/10 hover:-translate-y-2"
-            }`}
+            onClick={() => handleOpen(app.id)}
+            className={`
+              relative group p-3 rounded-2xl transition-all duration-300 ease-out
+              ${
+                app.isOpen && !app.isMinimized
+                  ? "bg-white/30 shadow-inner scale-110 -translate-y-2"
+                  : "hover:bg-white/20 hover:scale-110 hover:-translate-y-2"
+              }
+            `}
           >
-            <app.icon size={32} className="text-gray-500 drop-shadow-md" />
-            {/* Simple dot indicator for open apps */}
-            {app.isOpen && (
-              <div className="w-1 h-1 bg-white rounded-full mx-auto mt-1 shadow-sm" />
-            )}
+            <app.icon
+              size={36}
+              className={`text-white drop-shadow-lg transition-opacity ${
+                app.isMinimized ? "opacity-50" : "opacity-100"
+              }`}
+            />
+
+            <div
+              className={`
+              absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full shadow transition-all duration-300
+              ${app.isOpen ? "opacity-100 scale-100" : "opacity-0 scale-0"}
+            `}
+            />
+
+            <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black/50 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm pointer-events-none">
+              {app.title}
+            </span>
           </button>
         ))}
       </div>
