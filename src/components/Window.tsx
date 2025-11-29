@@ -1,187 +1,118 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useOS, AppData } from "@/context/OSContext";
 import { X, Minus, Plus } from "lucide-react";
 
-interface Position {
-  x: number;
-  y: number;
-}
-
 interface WindowProps {
-  id: string;
-  title: string;
-  x: number;
-  y: number;
-  z: number;
-  isOpen: boolean;
-  isMinimized: boolean;
-  isMaximized: boolean;
-  onClose: (id: string) => void;
-  onMinimize: (id: string) => void;
-  onMaximize: (id: string) => void;
-  onFocus: (id: string) => void;
-  content: React.ReactNode;
+  app: AppData;
 }
 
-// dragable window component
-const Window: React.FC<WindowProps> = ({
-  id,
-  title,
-  x,
-  y,
-  z,
-  isOpen,
-  isMinimized,
-  isMaximized,
-  onClose,
-  onMinimize,
-  onMaximize,
-  onFocus,
-  content,
-}) => {
-  // Track position locally for immediate feedback
-  const [pos, setPose] = useState<Position>({ x, y });
-  // console.log(pos);
-  const [isDragging, setIsDragging] = useState<boolean>(false);
+const Window = ({ app }: WindowProps) => {
+  const { dispatch } = useOS();
 
-  // We use a Ref to store the offset because we need the *initial* click delta
-  // unrelated to re-renders.
+  // Local state for dragging calculation
+  const [isDragging, setIsDragging] = useState(false);
+  const dragOffset = useRef({ x: 0, y: 0 });
 
-  const dragOffset = useRef<Position>({ x: 0, y: 0 });
-
-  // Reset position if x or y props change (e.g. reset on re-open)
-  // useEffect(() => {
-  //   setPose({ x, y });
-  // }, [x, y]);
-
-  //  start dragging
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (app.isMaximized) return;
+    dispatch({ type: "FOCUS", id: app.id }); // Tell OS we are focused
     // Prevent dragging if maximized
-    if (isMaximized) return;
     setIsDragging(true);
     // Calculate where we clicked relative to the window's top-left corner
     dragOffset.current = {
-      x: e.clientX - pos.x,
-      y: e.clientY - pos.y,
+      x: e.clientX - app.x,
+      y: e.clientY - app.y,
     };
-
-    // console.log("offset", dragOffset.current);
-    // console.log(e.clientX, e.clientY);
   };
 
-  // Handle moving (Global listener to prevent losing focus if mouse moves too fast)
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!isDragging) return;
-      // console.log(e.clientX, dragOffset.current.x);
-      setPose({
+      // We could update global state here, but for performance,
+      // it's often better to update local DOM style and only sync on MouseUp.
+      // For this MVP, we will sync via dispatch to keep it simple:
+      dispatch({
+        type: "UPDATE_POS",
+        id: app.id,
         x: e.clientX - dragOffset.current.x,
         y: e.clientY - dragOffset.current.y,
       });
     };
-
-    const handleMouseUp = () => {
-      setIsDragging(false);
-    };
+    const handleMouseUp = () => setIsDragging(false);
 
     if (isDragging) {
       window.addEventListener("mousemove", handleMouseMove);
       window.addEventListener("mouseup", handleMouseUp);
     }
-
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isDragging]);
+  }, [isDragging, app.id, dispatch]);
 
-  // Return early check MUST happen after hooks are defined
-  if (!isOpen) return null;
+  if (!app.isOpen) return null;
 
-  // --- STYLE LOGIC ---
-  const windowStyle: React.CSSProperties = {
-    left: isMaximized ? 0 : pos.x,
-    top: isMaximized ? 0 : pos.y,
-    width: isMaximized ? "100%" : "32rem", // 32rem = w-128
-    height: isMaximized ? "100%" : "20rem", // 20rem = h-80
-    zIndex: z,
-    transform: isMinimized
-      ? `translate(${0}px, ${500}px) scale(0.5)`
-      : "translate(0, 0) scale(1)",
-    opacity: isMinimized ? 0 : 1,
-    pointerEvents: isMinimized ? "none" : "auto",
-    borderRadius: isMaximized ? 0 : "0.75rem",
+  const style: React.CSSProperties = {
+    left: app.isMaximized ? 0 : app.x,
+    top: app.isMaximized ? 32 : app.y, // 32px to account for Navbar
+    width: app.isMaximized ? "100%" : "32rem",
+    height: app.isMaximized ? "calc(100% - 32px)" : "20rem",
+    zIndex: app.z,
+    transform: app.isMinimized ? "translate(0, 500px) scale(0)" : "none",
+    opacity: app.isMinimized ? 0 : 1,
+    transition: isDragging ? "none" : "all 0.3s cubic-bezier(0.25,0.8,0.25,1)",
+    borderRadius: app.isMaximized ? 0 : "0.75rem",
   };
 
   return (
     <div
-      onMouseDown={() => onFocus(id)}
-      className={`absolute bg-white/10 backdrop-blur-md shadow-2xl overflow-hidden border border-white/20 flex flex-col ${
-        isDragging
-          ? ""
-          : "transition-all duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)]"
-      }`}
-      style={windowStyle}
+      className="absolute bg-white/70 backdrop-blur-md shadow-2xl overflow-hidden border border-white/20 flex flex-col"
+      style={style}
+      onMouseDown={() => dispatch({ type: "FOCUS", id: app.id })}
     >
-      {/* --- HEADER BAR --- */}
+      {/* Header */}
       <div
         className="h-10 bg-linear-to-br from-gray-100/80 to-gray-100/50 border-b border-gray-300/50 flex items-center justify-between px-4 select-none"
         onMouseDown={handleMouseDown}
-        onDoubleClick={() => onMaximize(id)}
+        onDoubleClick={() => dispatch({ type: "MAXIMIZE", id: app.id })}
       >
-        {/* Traffic Lights Container */}
-        <div className="flex gap-2 group w-16">
+        <div className="flex gap-2 w-16 group">
           <button
             onClick={(e) => {
               e.stopPropagation();
-              onClose(id);
+              dispatch({ type: "CLOSE", id: app.id });
             }}
-            className="w-4 h-4 rounded-full bg-[#FF5F57] border border-[#E0443E] flex items-center justify-center hover:bg-[#FF5F57]/80 active:brightness-90"
+            className="w-4 h-4 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center"
           >
-            <X
-              size={8}
-              className="text-black/60 opacity-0 group-hover:opacity-100 transition-opacity"
-              strokeWidth={4}
-            />
+            <X size={8} className="opacity-0 group-hover:opacity-100" />
           </button>
           <button
             onClick={(e) => {
               e.stopPropagation();
-              onMinimize(id);
+              dispatch({ type: "MINIMIZE", id: app.id });
             }}
-            className="w-4 h-4 rounded-full bg-[#FEBC2E] border border-[#D89E24] flex items-center justify-center hover:bg-[#FEBC2E]/80 active:brightness-90"
+            className="w-4 h-4 rounded-full bg-yellow-500 hover:bg-yellow-600 flex items-center justify-center"
           >
-            <Minus
-              size={8}
-              className="text-black/60 opacity-0 group-hover:opacity-100 transition-opacity"
-              strokeWidth={4}
-            />
+            <Minus size={8} className="opacity-0 group-hover:opacity-100" />
           </button>
           <button
             onClick={(e) => {
               e.stopPropagation();
-              onMaximize(id);
+              dispatch({ type: "MAXIMIZE", id: app.id });
             }}
-            className="w-4 h-4 rounded-full bg-[#28C840] border border-[#1AAB29] flex items-center justify-center hover:bg-[#28C840]/80 active:brightness-90"
+            className="w-4 h-4 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center"
           >
-            <Plus
-              size={8}
-              className="text-black/60 opacity-0 group-hover:opacity-100 transition-opacity"
-              strokeWidth={4}
-            />
+            <Plus size={8} className="opacity-0 group-hover:opacity-100" />
           </button>
         </div>
-
-        <div className="font-semibold text-sm text-gray-700/80 flex-1 text-center truncate px-2">
-          {title}
+        <div className="flex-1 text-center font-semibold text-sm text-gray-700">
+          {app.title}
         </div>
-        <div className="w-16" />
+        <div className="w-16"></div>
       </div>
 
-      {/* --- CONTENT --- */}
-      <div className="flex-1 overflow-auto bg-white/50 p-6 text-gray-800">
-        <h2 className="text-2xl font-bold mb-4">{title}</h2>
-        <p className="leading-relaxed">{content}</p>
-      </div>
+      {/* Content */}
+      <div className="p-4">{app.content}</div>
     </div>
   );
 };
