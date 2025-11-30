@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useOS, AppData } from "@/context/OSContext";
-import { X, Minus, Plus } from "lucide-react";
+import { X, Minus, Maximize2 } from "lucide-react";
 
 interface WindowProps {
   app: AppData;
@@ -76,6 +76,7 @@ const Window = ({ app }: WindowProps) => {
         onMouseDown={handleMouseDown}
         onDoubleClick={() => dispatch({ type: "MAXIMIZE", id: app.id })}
       >
+        {/* traffic lights */}
         <div className="flex gap-2 w-16 group">
           <button
             onClick={(e) => {
@@ -84,7 +85,10 @@ const Window = ({ app }: WindowProps) => {
             }}
             className="w-4 h-4 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center"
           >
-            <X size={8} className="opacity-0 group-hover:opacity-100" />
+            <X
+              size={8}
+              className="opacity-0 group-hover:opacity-100 transition-opacity"
+            />
           </button>
           <button
             onClick={(e) => {
@@ -93,7 +97,10 @@ const Window = ({ app }: WindowProps) => {
             }}
             className="w-4 h-4 rounded-full bg-yellow-500 hover:bg-yellow-600 flex items-center justify-center"
           >
-            <Minus size={8} className="opacity-0 group-hover:opacity-100" />
+            <Minus
+              size={8}
+              className="opacity-0 group-hover:opacity-100 transition-opacity"
+            />
           </button>
           <button
             onClick={(e) => {
@@ -102,7 +109,10 @@ const Window = ({ app }: WindowProps) => {
             }}
             className="w-4 h-4 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center"
           >
-            <Plus size={8} className="opacity-0 group-hover:opacity-100" />
+            <Maximize2
+              size={8}
+              className="opacity-0 group-hover:opacity-100 transition-opacity"
+            />
           </button>
         </div>
         <div className="flex-1 text-center font-semibold text-sm text-gray-700">

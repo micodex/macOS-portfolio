@@ -5,7 +5,7 @@ import { Terminal, Globe, File, type LucideIcon } from "lucide-react";
 export interface AppData {
   id: string;
   title: string;
-  icon: LucideIcon;
+  icon: string;
   isOpen: boolean;
   isMinimized: boolean;
   isMaximized: boolean;
@@ -35,7 +35,7 @@ const initialApps: AppData[] = [
   {
     id: "safari",
     title: "Safari",
-    icon: Globe,
+    icon: "safari.png",
     isOpen: true,
     isMinimized: false,
     isMaximized: false,
@@ -47,7 +47,7 @@ const initialApps: AppData[] = [
   {
     id: "terminal",
     title: "Terminal",
-    icon: Terminal,
+    icon: "terminal.png",
     isOpen: false,
     isMinimized: false,
     isMaximized: false,
@@ -59,7 +59,7 @@ const initialApps: AppData[] = [
   {
     id: "files",
     title: "Files",
-    icon: File,
+    icon: "finder.png",
     isOpen: false,
     isMinimized: false,
     isMaximized: false,

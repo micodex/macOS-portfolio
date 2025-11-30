@@ -42,7 +42,8 @@ const Navbar = () => {
             <li key={name}>{name}</li>
           ))}
         </ul>
-        <span className="font-bold">active app: {title}</span>
+        {/* active app */}
+        <span className="font-bold">{title}</span>
       </div>
 
       <div>

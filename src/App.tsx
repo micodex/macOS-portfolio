@@ -4,7 +4,7 @@ import Window from "@/components/Window";
 import Navbar from "@/components/Navbar";
 import Dock from "@/components/Dock";
 
-import { useOS } from "./context/OSContext";
+import { useOS } from "@/context/OSContext";
 
 function Desktop() {
   const { state } = useOS();
@@ -20,7 +20,7 @@ function Desktop() {
       ))}
 
       {/* Dock */}
-      <Dock />
+      <Dock panelHeight={90} baseItemSize={70} magnification={90} />
     </div>
   );
 }
