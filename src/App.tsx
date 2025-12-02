@@ -1,8 +1,8 @@
 import "@/index.css";
 
-import Window from "@/components/Window";
-import Navbar from "@/components/Navbar";
-import Dock from "@/components/Dock";
+import Window from "@/components/system/Window";
+import Navbar from "@/components/system/Navbar";
+import Dock from "@/components/system/Dock";
 
 import { useOS } from "@/context/OSContext";
 
@@ -20,7 +20,7 @@ function Desktop() {
       ))}
 
       {/* Dock */}
-      <Dock panelHeight={90} baseItemSize={70} magnification={90} />
+      <Dock />
     </div>
   );
 }

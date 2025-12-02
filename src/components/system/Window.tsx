@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import { useOS, type AppData } from "@/context/OSContext";
 import { X, Minus, Maximize2 } from "lucide-react";
 
+import { getAppComponent } from "@/apps.config";
+
 interface WindowProps {
   app: AppData;
 }
@@ -56,8 +58,8 @@ const Window = ({ app }: WindowProps) => {
   const style: React.CSSProperties = {
     left: app.isMaximized ? 0 : app.x,
     top: app.isMaximized ? 32 : app.y, // 32px to account for Navbar
-    width: app.isMaximized ? "100%" : "32rem",
-    height: app.isMaximized ? "calc(100% - 32px)" : "25rem",
+    width: app.isMaximized ? "100%" : app.width, // use auto for dynamic width
+    height: app.isMaximized ? "calc(100% - 32px)" : app.height,
     zIndex: app.z,
     transform: app.isMinimized ? "translate(0, 500px) scale(0)" : "none",
     opacity: app.isMinimized ? 0 : 1,
@@ -73,7 +75,7 @@ const Window = ({ app }: WindowProps) => {
     >
       {/* Header */}
       <div
-        className="h-10 bg-linear-to-br from-gray-100/80 to-gray-100/50 border-b border-gray-300/50 flex items-center justify-between px-4 select-none"
+        className="h-10 bg-linear-to-br from-gray-100/80 to-gray-100/50 border-b border-gray-300/50 flex items-center justify-between px-4 select-none cursor-grab active:cursor-grabbing"
         onMouseDown={handleMouseDown}
         onDoubleClick={() => dispatch({ type: "MAXIMIZE", id: app.id })}
       >
@@ -123,7 +125,7 @@ const Window = ({ app }: WindowProps) => {
       </div>
 
       {/* Content */}
-      <div className="p-4">{app.content}</div>
+      <div className="flex-1 p-0">{getAppComponent(app.id)}</div>
     </div>
   );
 };

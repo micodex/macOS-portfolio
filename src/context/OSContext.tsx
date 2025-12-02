@@ -1,5 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 
+import { appsConfig } from "@/apps.config";
+
 // --- 1. Define Types ---
 export interface AppData {
   id: string;
@@ -11,7 +13,8 @@ export interface AppData {
   x: number;
   y: number;
   z: number;
-  content: string;
+  width?: number;
+  height?: number;
 }
 
 interface OSState {
@@ -29,81 +32,19 @@ type Action =
   | { type: "FOCUS"; id: string }
   | { type: "UPDATE_POS"; id: string; x: number; y: number };
 
-// --- 3. Initial State ---
-const initialApps: AppData[] = [
-  {
-    id: "safari",
-    title: "Safari",
-    icon: "safari.webp",
-    isOpen: true,
-    isMinimized: false,
-    isMaximized: false,
-    x: 100,
-    y: 50,
-    z: 1,
-    content: "Safari Browser",
-  },
-  {
-    id: "terminal",
-    title: "Terminal",
-    icon: "terminal.webp",
-    isOpen: false,
-    isMinimized: false,
-    isMaximized: false,
-    x: 200,
-    y: 150,
-    z: 1,
-    content: "Bash Terminal",
-  },
-  {
-    id: "files",
-    title: "Files",
-    icon: "finder.webp",
-    isOpen: false,
-    isMinimized: false,
-    isMaximized: false,
-    x: 300,
-    y: 250,
-    z: 1,
-    content: "File Explorer",
-  },
-  {
-    id: "mail",
-    title: "Mail",
-    icon: "mail.webp",
-    isOpen: false,
-    isMinimized: false,
-    isMaximized: false,
-    x: 400,
-    y: 350,
-    z: 1,
-    content: "Contact me",
-  },
-  {
-    id: "notes",
-    title: "Notes",
-    icon: "notes.webp",
-    isOpen: false,
-    isMinimized: false,
-    isMaximized: false,
-    x: 500,
-    y: 450,
-    z: 1,
-    content: "Notes",
-  },
-  {
-    id: "settings",
-    title: "Settings",
-    icon: "settings.webp",
-    isOpen: false,
-    isMinimized: false,
-    isMaximized: false,
-    x: 600,
-    y: 550,
-    z: 1,
-    content: "System Settings",
-  },
-];
+const initialApps: AppData[] = appsConfig.map((app, index) => ({
+  id: app.id,
+  title: app.title,
+  icon: app.icon,
+  isOpen: index === 0, // open the first app by default
+  isMaximized: false,
+  isMinimized: false,
+  x: 100 + index * 30,
+  y: 50 + index * 30,
+  z: index + 1,
+  width: app.width,
+  height: app.height,
+}));
 
 const initialState: OSState = {
   apps: initialApps,

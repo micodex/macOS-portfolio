@@ -156,11 +156,11 @@ import { useOS } from "@/context/OSContext";
 export default function Dock({
   className = "",
   spring = { mass: 0.1, stiffness: 150, damping: 12 },
-  magnification = 70,
+  magnification = 100,
   distance = 200,
-  panelHeight = 64,
+  panelHeight = 90,
   dockHeight = 256,
-  baseItemSize = 50,
+  baseItemSize = 70,
 }: DockProps) {
   const { state, dispatch } = useOS();
 
