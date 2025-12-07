@@ -14,27 +14,15 @@ import { useState } from "react";
 import ProjectCard from "./ProjectCard";
 import { customScrollbar } from "@/lib/scrollbar";
 import SkillsView from "./SkillsView";
-const RenderList = ({ list }) => (
-  <ul>
-    {list.map(({ icon: Icon, label }) => (
-      <button className="rounded-[7px] hover:bg-[#007AFF]/80 w-full cursor-pointer">
-        <li className="flex gap-2 p-2">
-          <Tag size={18} className="ml-6 text-[#0068DA] translate-y-1" />{" "}
-          <span>{label}</span>
-        </li>
-      </button>
-    ))}
-  </ul>
-);
 
 const FinderApp = () => {
   const [activeTab, setActiveTab] = useState("projects");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   return (
-    <div className="flex h-full w-full text-gray-900">
+    <div className="flex h-full w-full text-gray-900 bg-white/70 backdrop-blur-2xl">
       {/* --- side bar --- */}
-      <aside className="w-49 px-2 py-4 h-full bg-gray-100/90 backdrop-blur-xl">
+      <aside className="w-49 px-2 py-4 h-full">
         {SIDEBAR_ITEMS.map(({ category, items }) => (
           <div key={category} className="mb-4 px-2 select-none">
             <h3 className="mb-1 pl-3 text-[10px] text-gray-400 font-bold tracking-wide uppercase">
@@ -65,9 +53,9 @@ const FinderApp = () => {
       </aside>
 
       {/* --- main --- */}
-      <div className="flex flex-1 flex-col bg-white">
+      <div className="flex flex-1 flex-col bg-white/90">
         {/* fiexed toolabr */}
-        <div className="h-12 border-b border-gray-200 flex items-center justify-between px-4 bg-white/10 backdrop-blur-xl sticky top-0">
+        <div className="h-12 border-b border-gray-200 flex items-center bg-white/50 justify-between px-4 sticky top-0">
           <div className="flex items-center gap-2 text-gray-500">
             <ChevronRight size={18} className="text-gray-300" />
             <span className="font-semibold text-gray-700 capitalize">
@@ -127,7 +115,6 @@ const FinderApp = () => {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {PROJECTS.map((p) => (
                     <ProjectCard key={p.id} project={p} />
-                    // <span>projects</span>
                   ))}
                 </div>
               </div>
@@ -153,7 +140,7 @@ const FinderApp = () => {
                 <User size={48} className="text-gray-300" />
               </div>
               <h2 className="text-2xl font-bold text-gray-800">
-                Alex Developer
+                Milad Gharibi
               </h2>
               <p className="max-w-md">
                 I am a creative developer building interfaces that feel alive.

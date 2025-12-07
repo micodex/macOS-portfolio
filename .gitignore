@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 src/constants/constants.ts
 src/temp.css
+src/components/apps/Finder.tsx

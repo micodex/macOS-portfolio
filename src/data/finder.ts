@@ -5,15 +5,8 @@ import {
   Briefcase,
   Code,
   User,
-  Star,
-  Clock,
   Cloud,
   Tag,
-  ChevronRight,
-  Search,
-  LayoutGrid,
-  List,
-  ArrowUpRight,
 } from "lucide-react";
 
 export const SIDEBAR_ITEMS = [
@@ -107,27 +100,28 @@ export const MY_SKILLS = [
   {
     category: "frontend",
     skills: [
-      { label: "JavaScript.js", icon: "javascript.png" },
-      { label: "TypeScript.ts", icon: "typescript.png" },
-      { label: "React.js", icon: "react.png" },
-      { label: "CSS", icon: "css.png" },
-      { label: "Tailwind.css", icon: "less.png" },
+      { label: "JavaScript.js", icon: "javascript.png", level: "72%" },
+      { label: "TypeScript.ts", icon: "typescript.png", level: "72%" },
+      { label: "React.js", icon: "react.png", level: "72%" },
+      { label: "CSS", icon: "css.png", level: "72%" },
+      { label: "Tailwind.css", icon: "less.png", level: "72%" },
     ],
   },
   {
     category: "backend",
     skills: [
-      { label: "Node.js", icon: "sh.png" },
-      { label: "Express.js", icon: "JSON.png" },
-      { label: "Next.js", icon: "javascript.png" },
+      { label: "Node.js", icon: "sh.png", level: "72%" },
+      { label: "Express.js", icon: "JSON.png", level: "72%" },
+      { label: "Next.js", icon: "javascript.png", level: "72%" },
     ],
   },
   {
     category: "tools",
     skills: [
-      { label: "Git", icon: "javascript.png" },
-      { label: "Github", icon: "javascript.png" },
-      { label: "CI/CD", icon: "javascript.png" },
+      { label: "Git", icon: "text.png", level: "72%" },
+      { label: "Github", icon: "text.png", level: "72%" },
+      { label: "Docker", icon: "plain.png", level: "30%" },
+      { label: "CI/CD", icon: "sh.png", level: "72%" },
     ],
   },
 ];

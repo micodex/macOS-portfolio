@@ -76,7 +76,7 @@ const Window = ({ app }: WindowProps) => {
       {/* Header */}
       {/* bg-linear-to-br from-gray-100/80 to-gray-100/50  border-b border-gray-300/50*/}
       <div
-        className="h-10 flex items-center justify-between px-4 bg-white/70 backdrop-blur-xl select-none cursor-grab active:cursor-grabbing"
+        className="h-10 flex items-center justify-between px-4 bg-white/80 backdrop-blur-2xl select-none cursor-grab active:cursor-grabbing"
         onMouseDown={handleMouseDown}
         onDoubleClick={() => dispatch({ type: "MAXIMIZE", id: app.id })}
       >

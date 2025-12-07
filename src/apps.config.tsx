@@ -1,7 +1,9 @@
-import FinderApps from "./components/apps/Finder";
 import FinderApp from "./components/apps/finder/FinderApp";
 import NoteApp from "./components/apps/NoteApp";
 import TerminalApp from "./components/apps/TerminalApp";
+import SafariApp from "./components/apps/SafariApp";
+import MailApp from "./components/apps/MailApp";
+import SettingsApp from "./components/apps/SettingsApp";
 
 export interface AppConfig {
   id: string;
@@ -27,7 +29,7 @@ export const appsConfig: AppConfig[] = [
     icon: "safari.webp",
     width: 1040,
     height: 600,
-    component: "Safari app",
+    component: <SafariApp />,
   },
   {
     id: "terminal",
@@ -41,9 +43,9 @@ export const appsConfig: AppConfig[] = [
     id: "mail",
     title: "Mail",
     icon: "mail.webp",
-    width: 500,
+    width: 600,
     height: 600,
-    component: "Contact me",
+    component: <MailApp />,
   },
   {
     id: "notes",
@@ -59,7 +61,7 @@ export const appsConfig: AppConfig[] = [
     icon: "settings.webp",
     width: 500,
     height: 500,
-    component: "System Settings",
+    component: <SettingsApp />,
   },
 ];
 

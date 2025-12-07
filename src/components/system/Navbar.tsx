@@ -1,6 +1,6 @@
 import { useOS } from "@/context/OSContext";
 
-import { navIcons, navLinks } from "@/constants";
+import { navIcons, navLinks } from "@/data/navbar";
 import { useEffect, useState } from "react";
 
 const Navbar = () => {
