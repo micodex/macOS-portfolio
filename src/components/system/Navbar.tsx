@@ -3,7 +3,7 @@ import { useOS } from "@/context/OSContext";
 import { navIcons, navLinks } from "@/data/navbar";
 import { useEffect, useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ onToggleCC }: { onToggleCC: () => void }) => {
   const { state } = useOS();
   const activeApp = state.apps.find((app) => app.id === state.activeAppId);
   const title = activeApp ? activeApp.title : "Desktop";
@@ -30,6 +30,16 @@ const Navbar = () => {
     });
   };
 
+  const handleClick = (id: string) => {
+    switch (id) {
+      case "control": // control center image
+        onToggleCC();
+        break;
+      default:
+        console.log(`Button ${id} clicked`);
+    }
+  };
+
   return (
     <nav>
       <div className="flex">
@@ -50,11 +60,13 @@ const Navbar = () => {
         <ul>
           {navIcons.map(({ id, img }) => (
             <li key={id}>
-              <img
-                src={img}
-                alt={`icon-${id}`}
-                className="hover-effect icon-hover"
-              />
+              <button onClick={() => handleClick(id)}>
+                <img
+                  src={img}
+                  alt={`icon-${id}`}
+                  className="hover-effect icon-hover"
+                />
+              </button>
             </li>
           ))}
         </ul>

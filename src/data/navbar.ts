@@ -23,19 +23,19 @@ export const navLinks = [
 
 export const navIcons = [
   {
-    id: 1,
+    id: "wifi",
     img: "/src/assets/icons/wifi.svg",
   },
   {
-    id: 2,
+    id: "search",
     img: "/src/assets/icons/search.svg",
   },
   {
-    id: 3,
+    id: "user",
     img: "/src/assets/icons/user.svg",
   },
   {
-    id: 4,
+    id: "control",
     img: "/src/assets/icons/mode.svg",
   },
 ];

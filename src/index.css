@@ -6,7 +6,7 @@ body {
   width: 100dvw;
   height: 100dvh;
   overflow: hidden;
-  background-image: url("@/assets/images/wallpaper-1.jpg");
+  background-image: url("/wallpaper-light.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -36,7 +36,7 @@ body {
     @apply h-10 flex justify-between items-center bg-white/10 backdrop-blur-3xl px-5 select-none;
 
     .hover-effect {
-      @apply px-2 py-1 hover:bg-white/20 rounded-full transition-colors cursor-pointer active:bg-white/40;
+      @apply px-3 py-1 hover:bg-white/20 rounded-full transition-colors cursor-pointer active:bg-white/40;
     }
 
     div {
@@ -58,5 +58,12 @@ body {
     time {
       @apply text-sm font-medium text-black;
     }
+  }
+}
+
+@layer components {
+  /* liquid glass background effect for control center widgets */
+  .liquid-glass {
+    @apply backdrop-blur-md border-2 border-white/20 hover:backdrop-blur-3xl transition-all duration-120 hover:scale-104;
   }
 }
