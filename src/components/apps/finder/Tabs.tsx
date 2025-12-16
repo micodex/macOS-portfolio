@@ -2,6 +2,8 @@ import ProjectCard from "./ProjectCard";
 import { MY_SKILLS, PROJECTS } from "@/data/finder";
 import { ArrowUpRight, Download } from "lucide-react";
 
+import profilePic from "@/assets/images/profile.jpg";
+
 export const AboutTab = () => {
   return (
     <div className="flex flex-col items-center justify-center h-full text-center p-8 text-gray-500 space-y-4">
@@ -9,7 +11,7 @@ export const AboutTab = () => {
         <img
           draggable={false}
           loading="lazy"
-          src="src/assets/images/profile.jpg"
+          src={profilePic}
           alt="profile image"
         />
       </div>
@@ -72,7 +74,7 @@ export const SkillsTab = () => (
               <div className="w-16">
                 <img
                   draggable={false}
-                  src={`src/assets/files/${icon}`}
+                  src={`/files/${icon}`}
                   alt={`${label} icon`}
                   loading="lazy"
                 />

@@ -1,4 +1,5 @@
 import { type Project } from "@/data/finder";
+import folderImage from "@/assets/images/folder.png";
 
 const ProjectCard = ({ project }: { project: Project }) => {
   return (
@@ -24,7 +25,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         // if no image, use default folder image
         <div className="flex flex-1">
           <img
-            src="src/assets/images/folder.png"
+            src={folderImage}
             alt="thumbnail"
             draggable={false}
             loading="lazy"

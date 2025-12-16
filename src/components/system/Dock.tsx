@@ -151,7 +151,7 @@ function DockIcon({ children, className = "" }: DockIconProps) {
   );
 }
 
-import { useOS } from "@/context/OSContext";
+import { useOS } from "@/context/useOS";
 
 export default function Dock({
   className = "",
@@ -169,7 +169,7 @@ export default function Dock({
 
   const maxHeight = useMemo(
     () => Math.max(dockHeight, magnification + magnification / 2 + 4),
-    [magnification]
+    [magnification, dockHeight]
   );
   const heightRow = useTransform(isHovered, [0, 1], [panelHeight, maxHeight]);
   const height = useSpring(heightRow, spring);
@@ -207,9 +207,10 @@ export default function Dock({
             <DockIcon>
               <img
                 loading="lazy"
-                src={`/src/assets/images/${item.icon}`}
+                src={`/dock-icons/${item.icon}`}
                 alt={`${item.title} icon`}
                 draggable={false}
+                className="select-none"
               />
             </DockIcon>
 

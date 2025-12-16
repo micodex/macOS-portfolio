@@ -24,18 +24,18 @@ export const navLinks = [
 export const navIcons = [
   {
     id: "wifi",
-    img: "/src/assets/icons/wifi.svg",
+    img: "/icons/wifi.svg",
   },
   {
     id: "search",
-    img: "/src/assets/icons/search.svg",
+    img: "/icons/search.svg",
   },
   {
     id: "user",
-    img: "/src/assets/icons/user.svg",
+    img: "/icons/user.svg",
   },
   {
     id: "control",
-    img: "/src/assets/icons/mode.svg",
+    img: "/icons/mode.svg",
   },
 ];

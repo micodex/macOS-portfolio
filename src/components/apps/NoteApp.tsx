@@ -1,11 +1,13 @@
 import { NOTE_LINKS } from "@/data/note";
 import { customScrollbar } from "@/lib/scrollbar";
+import noteImage from "@/assets/images/profile.jpg";
+
 import * as motion from "motion/react-client";
 
 const NoteApp = () => {
   return (
     <div
-      className={`relative h-full p-6 bg-white/60 backdrop-blur-2xl overflow-y-scroll ${customScrollbar}`}
+      className={`relative h-full p-6 bg-white/70 backdrop-blur-2xl overflow-y-scroll ${customScrollbar}`}
     >
       {/* note graphic */}
       <div className="absolute w-16 left-100 top-22 rotate-20">
@@ -25,7 +27,7 @@ const NoteApp = () => {
         >
           <img
             draggable={false}
-            src="src/assets/images/profile.jpg"
+            src={noteImage}
             alt="profile picture"
             className="select-none opacity-89 w-full"
           />
@@ -49,16 +51,18 @@ const NoteApp = () => {
       <div className="my-4 border-b-3 border-dotted border-gray-500"></div>
 
       <p className="">
-        I&apos;m a self-taught <b>web developer</b> focused on creating clean,
-        fast, and modern web experiences. I enjoy turning ideas into functional
-        products with attention to detail.<br></br>
+        I&apos;m a self-taught{" "}
+        <b className="underline decoration-wavy decoration-yellow-600">
+          web developer
+        </b>{" "}
+        focused on creating clean, fast, and modern web experiences. I enjoy
+        turning ideas into functional products with attention to detail.
+        <br></br>
         <br></br>I work mainly with <mark>React</mark>, <mark>Next.js</mark>{" "}
-        <b>TypeScript</b>, and <b>Tailwind CSS</b> . I love learning new tools
+        <b>TypeScript</b>, and <b>Tailwind CSS</b> .I love learning new tools
         and improving my craft every day. Currently building real-world projects
         to sharpen my skills.
       </p>
-
-      <div className="my-4 border-b-3 border-dotted border-gray-500"></div>
     </div>
   );
 };
