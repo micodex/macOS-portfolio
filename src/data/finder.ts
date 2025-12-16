@@ -87,7 +87,7 @@ export const PROJECTS: Project[] = [
     title: "MiOS Portfolio",
     desc: "The operating system you are currently looking at.",
     tags: ["TypeScript", "Vite", "React"],
-    image: "",
+    image: "/projects/project-4.jpg",
     github: "",
     demo: "",
   },

@@ -16,7 +16,7 @@ const ControlCenter = ({ isOpen }: { isOpen: boolean }) => {
       `}
     >
       {/* bento grid */}
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-4 gap-3">
         {Controls.map((control) => {
           const spanClass = `${control.colSpan || "col-span-1"} ${
             control.rowSpan || ""

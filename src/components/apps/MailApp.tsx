@@ -16,7 +16,7 @@ const MailApp = () => {
             <div key={label}>
               <a
                 href={url}
-                target={label === "Email" ? "" : "_blank"}
+                target={label === "Email" ? null : "_blank"}
                 rel="noopener noreferrer"
                 className={`w-full flex items-center gap-2.5 px-3 py-1.5 rounded-md text-sm transition-colors duration-150 
                 ${
@@ -90,7 +90,7 @@ const MailApp = () => {
             <option>Helvetica</option>
             <option>San Francisco</option>
           </select>
-          <div className="h-4 w-[1px] bg-gray-300"></div>
+          <div className="h-4 w-px bg-gray-300"></div>
           <Bold size={14} className="cursor-pointer hover:text-black" />
           <Italic size={14} className="cursor-pointer hover:text-black" />
           <Underline size={14} className="cursor-pointer hover:text-black" />

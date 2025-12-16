@@ -8,6 +8,7 @@ import {
   FaGithub,
   FaInbox,
 } from "react-icons/fa";
+
 interface SocialLink {
   label: string;
   icon: IconType;

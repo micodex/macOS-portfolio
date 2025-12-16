@@ -1,4 +1,4 @@
-import FinderApp from "./components/apps/finder/FinderApp";
+import FinderApp from "./components/apps/Finder/FinderApp";
 import NoteApp from "./components/apps/NoteApp";
 import TerminalApp from "./components/apps/TerminalApp";
 import SafariApp from "./components/apps/SafariApp";

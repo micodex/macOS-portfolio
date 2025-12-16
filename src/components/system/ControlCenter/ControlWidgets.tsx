@@ -67,7 +67,7 @@ export const SliderControl = ({ data }: { data: ControlItem }) => {
 
   return (
     <div className="liquid-glass w-full h-16 bg-black/10 rounded-3xl p-3">
-      <div className="flex mb-1 px-1">
+      <div className="flex mb-1 px-2">
         <span className="text-xs font-bold text-white">{data.label}</span>
       </div>
       <div className="flex items-center">
@@ -91,8 +91,7 @@ export const SliderControl = ({ data }: { data: ControlItem }) => {
           />
         </div>
 
-        {/* mix blend ! */}
-        <div className="flex-none px-2 text-gray-100 mix-blend-exclusion">
+        <div className="flex-none px-2 text-gray-100">
           <data.icon size={16} />
         </div>
       </div>
@@ -105,33 +104,33 @@ export const MusicControl = () => {
   const [playing, setPlaying] = useState(false);
 
   return (
-    <div className="liquid-glass h-full w-full bg-black/20 rounded-4xl p-4 flex flex-col justify-between text-white">
+    <div className="liquid-glass h-full w-full bg-black/20 rounded-4xl p-3 flex flex-col justify-between text-white">
       {/* image cover */}
-      <div className="mb-1 w-12 h-12 rounded-2xl shadow-lg shrink-0 overflow-hidden">
+      <div className="w-12 h-12 rounded-2xl shadow-lg shrink-0 overflow-hidden">
         <img draggable={false} src="/album-cover.jpg" className="" />
       </div>
 
       <div className="">
-        <div className="font-bold text-sm truncate">Under the Water</div>
-        <div className="text-[10px] text-white/60 truncate">
+        <div className="font-bold text-[14px] truncate">Under the Water</div>
+        <div className="text-[8px] text-white/60 truncate">
           AURORA . FOR THE METAL PEOPLE
         </div>
       </div>
       {/* music control buttons */}
-      <div className="flex items-center justify-between px-2 mt-2">
+      <div className="flex items-center justify-between px-4  mt-1">
         <SkipBack
-          size={20}
+          size={16}
           className="fill-white hover:opacity-70 cursor-pointer"
         />
         <button onClick={() => setPlaying(!playing)}>
           {playing ? (
-            <Pause size={28} className="fill-white" />
+            <Pause size={22} className="fill-white" />
           ) : (
-            <Play size={28} className="fill-white" />
+            <Play size={22} className="fill-white" />
           )}
         </button>
         <SkipForward
-          size={20}
+          size={16}
           className="fill-white hover:opacity-70 cursor-pointer"
         />
       </div>
