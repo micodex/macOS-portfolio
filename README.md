@@ -7,7 +7,7 @@
 
 ![project screenshot](public/projects/project-4.jpg)
 
-دمو آنلاین 👈 [Demo](https://micodex.github.io/mios-portfolio/)
+دمو آنلاین 👈 [Demo](https://micodex.github.io/macos-portfolio/)
 
 ---
 
