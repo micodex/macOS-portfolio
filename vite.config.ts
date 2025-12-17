@@ -12,5 +12,5 @@ export default defineConfig(({ mode }) => ({
     outDir: "dist",
   },
 
-  base: mode === "production" ? "/macos-portfolio/" : "/",
+  base: mode === "production" ? "/macOS-portfolio/" : "/",
 }));

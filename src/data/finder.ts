@@ -84,11 +84,11 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 2,
-    title: "MiOS Portfolio",
+    title: "macOS Portfolio",
     desc: "The operating system you are currently looking at.",
     tags: ["TypeScript", "Vite", "React"],
     image: "projects/project-4.jpg",
-    github: "",
+    github: "https://micodex.github.io/macOS-portfolio/",
     demo: "",
   },
   {
