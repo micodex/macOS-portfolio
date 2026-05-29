@@ -2,7 +2,7 @@ import { createContext, useReducer } from "react";
 
 import { appsConfig } from "@/apps.config";
 
-// --- types ---
+// --- Types ---
 export interface AppData {
   id: string;
   title: string;
@@ -75,11 +75,11 @@ const initialState: OSState = {
     dark: false, // dark mode
     lock: false, // lockscreen
     playing: false, // is audio playing?
-    ccOpen: false, // control center
+    ccOpen: true, // control center
   },
 };
 
-// --- reducer to send actions ---
+// --- Reducer Function to send actions ---
 const osReducer = (state: OSState, action: Action): OSState => {
   switch (action.type) {
     case "OPEN": {
@@ -91,7 +91,7 @@ const osReducer = (state: OSState, action: Action): OSState => {
         apps: state.apps.map((app) =>
           app.id === action.id
             ? { ...app, isOpen: true, isMinimized: false, z: nextZ }
-            : app
+            : app,
         ),
       };
     }
@@ -102,7 +102,7 @@ const osReducer = (state: OSState, action: Action): OSState => {
         apps: state.apps.map((app) =>
           app.id === action.id
             ? { ...app, isOpen: false, isMaximized: false }
-            : app
+            : app,
         ),
       };
     case "MINIMIZE":
@@ -110,14 +110,16 @@ const osReducer = (state: OSState, action: Action): OSState => {
         ...state,
         activeAppId: null,
         apps: state.apps.map((app) =>
-          app.id === action.id ? { ...app, isMinimized: true } : app
+          app.id === action.id ? { ...app, isMinimized: true } : app,
         ),
       };
     case "MAXIMIZE":
       return {
         ...state,
         apps: state.apps.map((app) =>
-          app.id === action.id ? { ...app, isMaximized: !app.isMaximized } : app
+          app.id === action.id
+            ? { ...app, isMaximized: !app.isMaximized }
+            : app,
         ),
       };
     case "FOCUS": {
@@ -127,7 +129,7 @@ const osReducer = (state: OSState, action: Action): OSState => {
         maxZ: nextZ,
         activeAppId: action.id,
         apps: state.apps.map((app) =>
-          app.id === action.id ? { ...app, z: nextZ } : app
+          app.id === action.id ? { ...app, z: nextZ } : app,
         ),
       };
     }
@@ -135,7 +137,7 @@ const osReducer = (state: OSState, action: Action): OSState => {
       return {
         ...state,
         apps: state.apps.map((app) =>
-          app.id === action.id ? { ...app, x: action.x, y: action.y } : app
+          app.id === action.id ? { ...app, x: action.x, y: action.y } : app,
         ),
       };
     // status actions
@@ -190,7 +192,7 @@ const osReducer = (state: OSState, action: Action): OSState => {
   }
 };
 
-// --- create context ---
+// --- Create Context ---
 export const OSContext = createContext<
   { state: OSState; dispatch: React.Dispatch<Action> } | undefined
 >(undefined);

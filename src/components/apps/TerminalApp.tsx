@@ -3,17 +3,21 @@ import { useState } from "react";
 const TerminalApp = () => {
   const [input, setInput] = useState("");
   const [history, setHistory] = useState([
-    'Welcome to miOS Portfolio. Type "help".',
+    'Welcome to MacOS Portfolio. Type "help".',
   ]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       const newHistory = [...history, `➜ ~ ${input}`];
       if (input === "help")
-        newHistory.push("Available commands: about, skills, contact, clear");
+        newHistory.push(
+          "Available commands: about, skills, contact, version, clear",
+        );
       else if (input === "skills")
         newHistory.push("React, TypeScript, MongoDB");
       else if (input === "clear") return setHistory([]);
+      else if (input === "version")
+        newHistory.push("MacOS Portfolio. Version 1.5.0");
       else newHistory.push(`command not found: ${input}`);
 
       setHistory(newHistory);
@@ -23,7 +27,7 @@ const TerminalApp = () => {
 
   return (
     <div
-      className="h-full text-green-400 font-mono text-sm p-4 flex flex-col bg-slate-950/80 backdrop-blur-xl"
+      className="h-full text-green-300 font-mono text-sm p-4 flex flex-col bg-slate-950/80 backdrop-blur-xl"
       onClick={() => document.getElementById("term-input")?.focus()}
     >
       <div className="flex-1 overflow-auto">
@@ -36,7 +40,7 @@ const TerminalApp = () => {
           <span className="mr-2 text-green-300">➜ ~</span>
           <input
             id="term-input"
-            className="bg-transparent outline-none flex-1 text-gray-100"
+            className="bg-transparent outline-none flex-1 text-green-50"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}

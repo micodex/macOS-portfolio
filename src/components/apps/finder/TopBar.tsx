@@ -8,7 +8,7 @@ interface TopBarProps {
 
 const TopBar = ({ viewMode, onViewModeChange, activeTab }: TopBarProps) => {
   return (
-    <div className="sticky top-0 h-12 border-b border-gray-200 flex items-center bg-white justify-between px-4">
+    <div className="sticky top-0 h-12 z-2 mb-2 border-b border-gray-200 flex items-center bg-white justify-between px-4">
       <div className="flex items-center gap-2 text-gray-500">
         <ChevronRight size={18} className="text-gray-300" />
         <span className="font-semibold text-gray-700 capitalize">

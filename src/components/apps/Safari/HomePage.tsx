@@ -25,7 +25,7 @@ const HomePage = ({ onNavigate }: HomePageProps) => (
           className="group flex flex-col items-center gap-3 p-4"
         >
           <div
-            className={`w-16 h-16 rounded-2xl ${fav.color} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-transform hover:scale-120 active:scale-90 cursor-pointer`}
+            className={`w-16 h-16 rounded-2xl ${fav.color} flex items-center justify-center shadow-lg hover:shadow-xl transition-transform hover:scale-120 active:scale-90 cursor-pointer`}
           >
             <fav.icon size={32} className="text-white" />
           </div>
