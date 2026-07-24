@@ -9,7 +9,7 @@ const FinderApp = () => {
   const [activeTab, setActiveTab] = useState("projects");
 
   return (
-    <div className="flex h-full w-full text-gray-900 bg-white/93 backdrop-blur-2xl">
+    <div className="flex h-full w-full text-gray-900 bg-white/90 backdrop-blur-2xl">
       {/* --- side bar --- */}
       <SideBar
         list={FINDER_SIDEBAR}

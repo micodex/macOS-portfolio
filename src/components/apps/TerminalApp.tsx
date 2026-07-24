@@ -27,7 +27,7 @@ const TerminalApp = () => {
 
   return (
     <div
-      className="h-full text-green-300 font-mono text-sm p-4 flex flex-col bg-slate-950/80 backdrop-blur-xl"
+      className="h-full text-green-300 font-mono text-sm p-4 flex flex-col bg-slate-950/80 backdrop-blur-2xl"
       onClick={() => document.getElementById("term-input")?.focus()}
     >
       <div className="flex-1 overflow-auto">

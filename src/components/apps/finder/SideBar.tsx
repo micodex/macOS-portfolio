@@ -1,4 +1,5 @@
 import { type SideBarItem } from "@/data/finder";
+
 interface SideBarProps {
   list: SideBarItem[];
   activeTab: string;
