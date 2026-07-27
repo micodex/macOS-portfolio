@@ -1,30 +1,13 @@
 import type { SideBarItem } from "@/data/finder";
-import { useState } from "react";
 
 interface SideBarProps {
   list: SideBarItem[];
-  activeTab?: string;
-  defaultActiveTab?: string;
+  activeTab: string;
   onTabChange?: (id: string) => void;
 }
 
-const SideBar = ({
-  list,
-  activeTab,
-  defaultActiveTab,
-  onTabChange,
-}: SideBarProps) => {
-  const firstItemId = list[0]?.items[0]?.id ?? "";
-  const [internalActiveTab, setInternalActiveTab] = useState(
-    defaultActiveTab ?? firstItemId
-  );
-  const selectedTab = activeTab ?? internalActiveTab;
-
+const SideBar = ({ list, activeTab, onTabChange }: SideBarProps) => {
   const handleTabChange = (id: string) => {
-    if (activeTab === undefined) {
-      setInternalActiveTab(id);
-    }
-
     onTabChange?.(id);
   };
 
@@ -41,11 +24,11 @@ const SideBar = ({
               type="button"
               id={id}
               onClick={() => handleTabChange(id)}
-              aria-current={selectedTab === id ? "page" : undefined}
+              aria-current={activeTab === id ? "page" : undefined}
               className={`
                     w-full px-3 py-1.5 flex items-center gap-2.5 text-sm transition-colors rounded-lg cursor-pointer
                     ${
-                      selectedTab === id
+                      activeTab === id
                         ? "text-white bg-sky-500"
                         : "text-gray-600 hover:bg-black/5 active:bg-black/10"
                     }
@@ -53,7 +36,7 @@ const SideBar = ({
             >
               <Icon
                 size={16}
-                className={selectedTab === id ? "text-white" : color}
+                className={activeTab === id ? "text-white" : color}
               />
               <span>{label}</span>
             </button>
