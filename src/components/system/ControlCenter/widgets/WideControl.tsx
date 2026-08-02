@@ -1,14 +1,26 @@
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 import { type ControlItem } from "../controls.config";
 
 // wide control (2x1)
 export const WideControl = ({ data }: { data: ControlItem }) => {
-  const [active, setActive] = useState(data.isActive);
+  const [on, setOn] = useState(data.isActive);
+
   const Icon = data.icon;
+  const { isDark, toggleDark } = useTheme();
+
+  // is active based on state or internal state
+  const active =
+    data.id === "theme" ? isDark : data.id === "focus" ? on : false;
 
   const handleClick = () => {
-    setActive(!active);
     if (data.action) data.action();
+
+    if (data.id === "theme") {
+      toggleDark();
+    } else if (data.id === "focus") {
+      setOn(!on);
+    }
   };
 
   return (
