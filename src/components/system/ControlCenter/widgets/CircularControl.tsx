@@ -1,19 +1,41 @@
-import { type ControlItem } from "../controls.config";
+import { useEffect, useState } from "react";
 import { useOS } from "@/context/useOS";
+import { type ControlItem } from "../controls.config";
 
 // circualr control (1x1)
 export const CircularControl = ({ data }: { data: ControlItem }) => {
   const { state, dispatch } = useOS();
+  const [isFullScreen, setIsFullScreen] = useState(
+    !!document.fullscreenElement,
+  );
+
   const Icon = data.icon;
+
+  useEffect(() => {
+    if (data.id !== "fullscreen") return;
+
+    const handleFullscreenChange = () => {
+      setIsFullScreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+
+    return () => {
+      console.log("return");
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, [data.id]); // data.id = "wifi" → effect returns immediately, no listener attached.
 
   const active =
     data.id === "wifi"
       ? state.systemStatus.wifi
       : data.id === "bluetooth"
-      ? state.systemStatus.bluetooth
-      : data.id === "lock"
-      ? state.systemStatus.lock
-      : false;
+        ? state.systemStatus.bluetooth
+        : data.id === "lock"
+          ? state.systemStatus.lock
+          : data.id === "fullscreen"
+            ? isFullScreen // is fullscreen?
+            : false;
 
   const handleClick = () => {
     if (data.id === "wifi") {
@@ -23,7 +45,7 @@ export const CircularControl = ({ data }: { data: ControlItem }) => {
     } else if (data.id === "lock") {
       dispatch({ type: "TOGGLE_LOCKSCREEN" });
     } else if (data.id === "fullscreen") {
-      data.action && data.action();
+      data.action?.();
     }
   };
 
