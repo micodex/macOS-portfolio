@@ -1,6 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 
 @import "tailwindcss";
+/* @custom-variant dark (&:where(.dark, .dark *)); */
+@custom-variant dark {
+  &:where(.dark, .dark *) {
+    @slot;
+  }
+}
 
 body {
   width: 100dvw;
@@ -34,7 +40,7 @@ body {
   }
 
   nav {
-    @apply h-10 flex justify-between items-center bg-white/10 backdrop-blur-3xl px-5 select-none;
+    @apply h-10 flex justify-between items-center bg-white/10 dark:bg-black/50 dark:text-gray-50 backdrop-blur-3xl px-5 select-none;
 
     .hover-effect {
       @apply px-3 py-1 hover:bg-white/20 rounded-full transition-colors cursor-pointer active:bg-white/40;
@@ -58,7 +64,7 @@ body {
     }
 
     time {
-      @apply text-sm font-medium text-black;
+      @apply text-sm font-medium text-black text-white;
     }
 
     /* -- taks icons : menu, bluetooth, wifi ... -- */
@@ -84,5 +90,9 @@ body {
   /* liquid glass background effect for control center widgets */
   .liquid-glass {
     @apply backdrop-blur-md border-2 border-white/20 hover:backdrop-blur-3xl transition-all duration-120 hover:scale-104;
+  }
+
+  .window-backdrop {
+    @apply bg-white/80 dark:bg-black/80  backdrop-blur-2xl;
   }
 }

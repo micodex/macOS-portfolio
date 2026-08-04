@@ -20,7 +20,6 @@ export interface AppData {
 export interface SystemStatus {
   wifi: boolean;
   bluetooth: boolean;
-  dark: boolean;
   lock: boolean;
   playing: boolean;
   ccOpen: boolean;
@@ -45,7 +44,6 @@ type Action =
   | { type: "SET_PLAYING"; playing: boolean }
   | { type: "TOGGLE_LOCKSCREEN" }
   | { type: "TOGGLE_BLUETOOTH" }
-  | { type: "TOGGLE_DARKMODE" }
   | { type: "TOGGLE_WIFI" }
   | { type: "TOGGLE_CC" };
 
@@ -72,7 +70,6 @@ const initialState: OSState = {
   systemStatus: {
     wifi: true,
     bluetooth: false,
-    dark: false, // dark mode
     lock: false, // lockscreen
     playing: false, // is audio playing?
     ccOpen: true, // control center
@@ -154,14 +151,7 @@ const osReducer = (state: OSState, action: Action): OSState => {
           bluetooth: !state.systemStatus.bluetooth,
         },
       };
-    case "TOGGLE_DARKMODE":
-      return {
-        ...state,
-        systemStatus: {
-          ...state.systemStatus,
-          dark: !state.systemStatus.dark,
-        },
-      };
+
     case "SET_PLAYING":
       return {
         ...state,

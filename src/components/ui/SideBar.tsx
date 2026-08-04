@@ -1,12 +1,16 @@
-import { type SideBarItem } from "@/data/finder";
+import type { SideBarItem } from "@/data/finder";
 
 interface SideBarProps {
   list: SideBarItem[];
   activeTab: string;
-  onTabChange: (id: string) => void;
+  onTabChange?: (id: string) => void;
 }
 
 const SideBar = ({ list, activeTab, onTabChange }: SideBarProps) => {
+  const handleTabChange = (id: string) => {
+    onTabChange?.(id);
+  };
+
   return (
     <aside className="w-49 px-2 py-4">
       {list.map(({ category, items }) => (
@@ -17,8 +21,10 @@ const SideBar = ({ list, activeTab, onTabChange }: SideBarProps) => {
           {items.map(({ label, id, icon: Icon, color }) => (
             <button
               key={id}
-              id="item"
-              onClick={() => onTabChange(id)}
+              type="button"
+              id={id}
+              onClick={() => handleTabChange(id)}
+              aria-current={activeTab === id ? "page" : undefined}
               className={`
                     w-full px-3 py-1.5 flex items-center gap-2.5 text-sm transition-colors rounded-lg cursor-pointer
                     ${

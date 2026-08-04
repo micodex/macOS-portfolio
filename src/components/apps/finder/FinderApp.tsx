@@ -3,7 +3,7 @@ import { FINDER_SIDEBAR } from "@/data/finder";
 
 import { customScrollbar } from "@/lib/scrollbar";
 import { AboutTab, ProjectsTab, DownloadTab, SkillsTab } from "./Tabs";
-import SideBar from "./SideBar";
+import SideBar from "@/components/ui/SideBar";
 
 const FinderApp = () => {
   const [activeTab, setActiveTab] = useState("projects");
