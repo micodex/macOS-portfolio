@@ -11,9 +11,7 @@ interface HomePageProps {
 const HomePage = ({ onNavigate }: HomePageProps) => (
   <div className="flex flex-col items-center py-16">
     <div className="mb-12 flex flex-col items-center">
-      <h1 className="text-4xl font-bold text-gray-800 mb-2 drop-shadow-sm">
-        Favorites
-      </h1>
+      <h1 className="text-4xl font-bold mb-2 drop-shadow-sm">Favorites</h1>
     </div>
 
     {/* Grid of Favorites */}
@@ -29,16 +27,14 @@ const HomePage = ({ onNavigate }: HomePageProps) => (
           >
             <fav.icon size={32} className="text-white" />
           </div>
-          <span className="text-sm font-medium text-gray-700">{fav.title}</span>
+          <span className="text-sm font-medium ">{fav.title}</span>
         </button>
       ))}
     </div>
 
     {/* Projects Section */}
     <div className="mt-12 w-full max-w-3xl">
-      <h2 className="text-xl font-bold text-gray-800 mb-6 px-2">
-        Recent Projects
-      </h2>
+      <h2 className="text-xl font-bold mb-6 px-2">Recent Projects</h2>
       <div className="space-y-3">
         {PROJECTS.map((project) => (
           <div
@@ -50,18 +46,19 @@ const HomePage = ({ onNavigate }: HomePageProps) => (
                 data: project,
               })
             }
-            className="flex items-center gap-4 p-3 rounded-xl bg-white/90 border border-gray-200 shadow-sm hover:shadow-md transition-all cursor-pointer group"
+            className="flex items-center gap-4 p-3 rounded-xl bg-card border border-border
+              shadow-sm hover:shadow-md transition-all cursor-pointer group"
           >
             <div
               className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0`}
             >
-              <LayoutGrid size={18} className="text-gray-500" />
+              <LayoutGrid size={18} className="text-accent-foreground" />
             </div>
             <div className="flex-1 min-w-0">
-              <div className="font-semibold text-gray-800 truncate">
+              <div className="font-semibold text-card-foreground truncate">
                 {project.title}
               </div>
-              <div className="text-xs text-gray-500 truncate">
+              <div className="text-xs text-secondary-foreground truncate">
                 {project.desc}
               </div>
             </div>

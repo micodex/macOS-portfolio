@@ -69,13 +69,13 @@ const Window = ({ app }: WindowProps) => {
 
   return (
     <div
-      className="absolute flex flex-col shadow-[0_0_35px_rgba(0,0,0,0.15)] overflow-hidden border border-white/20"
+      className="absolute flex flex-col shadow-[0_0_35px_rgba(0,0,0,0.15)] overflow-hidden"
       style={style}
       onMouseDown={() => dispatch({ type: "FOCUS", id: app.id })}
     >
       {/* Header */}
       <div
-        className="h-10 flex items-center justify-between px-4 bg-white/70 backdrop-blur-2xl select-none cursor-grab active:cursor-grabbing"
+        className="h-10 flex items-center justify-between px-4 bg-white/70 dark:bg-black/70 backdrop-blur-2xl select-none cursor-grab active:cursor-grabbing"
         onMouseDown={handleMouseDown}
         onDoubleClick={() => dispatch({ type: "MAXIMIZE", id: app.id })}
       >
@@ -118,14 +118,21 @@ const Window = ({ app }: WindowProps) => {
             />
           </button>
         </div>
-        <div className="flex-1 text-center font-semibold text-sm text-gray-700">
+        <div className="flex-1 text-center font-semibold text-sm">
           {app.title}
         </div>
+        {/* seperator */}
         <div className="w-16"></div>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 overflow-y-auto">{getAppComponent(app.id)}</div>
+      {/* App Content */}
+      <div
+        // preventing window-level interactions
+        onClick={(e) => e.stopPropagation()}
+        className="flex-1 overflow-y-auto"
+      >
+        {getAppComponent(app.id)}
+      </div>
     </div>
   );
 };

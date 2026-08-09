@@ -14,20 +14,20 @@ export const AboutTab = () => {
   const { dispatch } = useOS();
 
   return (
-    <div className="flex flex-col items-center justify-center h-full text-center p-8 text-gray-500 space-y-4">
+    <div className="flex flex-col items-center justify-center h-full text-center p-8 space-y-4">
       <ImageSkeleton
         src={profilePic}
         alt="profile image"
         className="aspect-square w-28 overflow-hidden rounded-full mb-4"
       />
-      <h2 className="text-2xl font-bold text-gray-800">Milad Gharibi</h2>
-      <p className="max-w-md">
+      <h2 className="text-2xl font-bold mb-2">Milad Gharibi</h2>
+      <p className="max-w-md text-muted-foreground mb-4">
         I am a creative developer building interfaces that feel alive. Welcome
         to my digital garden.
       </p>
       <button
         onClick={() => dispatch({ type: "OPEN", id: "notes" })}
-        className="flex items-center gap-2 text-blue-500 hover:underline cursor-pointer mt-4"
+        className="flex items-center gap-2 text-primary hover:underline cursor-pointer"
       >
         Read full bio <ArrowUpRight size={14} />
       </button>
@@ -38,7 +38,6 @@ export const AboutTab = () => {
 // ---
 
 export const ProjectsTab = () => {
-  // const [activeTab, setActiveTab] = useState("projects");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   return (
@@ -50,9 +49,7 @@ export const ProjectsTab = () => {
       />
       <div className="space-y-6">
         <div>
-          <h2 className="text-gray-500 text-xs font-bold mb-4 px-1">
-            2025 Projects
-          </h2>
+          <h2 className="text-xs font-semibold mb-4 px-1">2025 Projects</h2>
           <div
             className={`${
               viewMode === "grid"
@@ -66,9 +63,7 @@ export const ProjectsTab = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-gray-500 text-xs font-bold mb-4 px-1">
-            Mini Projects
-          </h2>
+          <h2 className="text-xs font-bold mb-4 px-1">Mini Projects</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 opacity-70">
             {PROJECTS.slice(0, 2).map((p) => (
               <ProjectCard key={p.id} project={p} />
@@ -94,8 +89,8 @@ export const SkillsTab = () => {
       />
       <div className="space-y-6">
         {MY_SKILLS.map(({ category, skills }) => (
-          <div key={category}>
-            <h3 className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">
+          <div className="" key={category}>
+            <h3 className="text-secondary-foreground text-xs font-semibold uppercase tracking-wider mb-3 ml-4 ">
               {category}
             </h3>
             {/* skills in a category */}
@@ -104,19 +99,20 @@ export const SkillsTab = () => {
                 <div
                   key={label}
                   className="group flex flex-col gap-2 items-center p-2 rounded-xl
-                  hover:bg-gray-100 hover:outline outline-gray-200
-                  transition-colors ease-in"
+                  hover:bg-accent/20 ring-accent hover:ring transition-colors"
                 >
                   <ImageSkeleton
                     src={`${import.meta.env.BASE_URL}files/${icon}`}
                     alt={`${label} icon`}
-                    className="w-16 aspect-9/10"
+                    className="w-16 aspect-9/10 dark:opacity-90"
                   />
-                  <div className="text-sm font-medium text-gray-700 text-center">
-                    <span className="block group-hover:text-blue-600">
+                  <div className="text-sm font-medium text-center">
+                    <span className="block group-hover:text-primary">
                       {label}
                     </span>
-                    <span className="text-xs text-gray-400">{level}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {level}
+                    </span>
                   </div>
                 </div>
               ))}
@@ -134,7 +130,7 @@ export const DownloadTab = () => {
   const [viewMode, setViewMode] = useState<"grid" | "list">("list");
 
   return (
-    <div className="">
+    <div>
       <TopBar
         activeTab={"Downloads"}
         viewMode={viewMode}
@@ -160,7 +156,9 @@ export const DownloadTab = () => {
           <a
             key={name}
             href={link}
-            className="even:bg-gray-100 rounded-lg cursor-pointer p-3 hover:bg-blue-50 group"
+            className="even:bg-secondary text-card-foreground
+              rounded-lg cursor-pointer p-3 hover:bg-accent 
+              hover:text-accent-foreground group transition-colors"
             download
           >
             <div
@@ -180,20 +178,24 @@ export const DownloadTab = () => {
               >
                 <Icon
                   size={viewMode == "grid" ? 40 : 20}
-                  className=" text-gray-400 group-hover:text-blue-500"
+                  className="text-muted-foreground group-hover:text-primary"
                 />
-                <span className="text-sm font-bold text-gray-700 hover:text-blue-500 transition-colors">
-                  {name}
-                </span>
+                <span className="text-sm font-bold">{name}</span>
               </div>
               {/* show only on grid mode */}
               {viewMode === "list" && (
-                <span className="flex-2  text-sm text-gray-500">{date}</span>
+                <span className="flex-2 text-sm text-muted-foreground">
+                  {date}
+                </span>
               )}
-              <span className="flex-1  text-sm text-gray-500">{size}</span>
+              <span className="flex-1 text-sm text-muted-foreground">
+                {size}
+              </span>
               {/* show only on grid mode */}
               {viewMode === "list" && (
-                <span className="flex-1   text-sm text-gray-500">{kind}</span>
+                <span className="flex-1 text-sm text-muted-foreground">
+                  {kind}
+                </span>
               )}
             </div>
           </a>

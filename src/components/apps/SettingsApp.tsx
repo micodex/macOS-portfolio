@@ -17,30 +17,22 @@ const SettingsApp = () => {
         onTabChange={setActiveTab}
       />
 
-      <main className="h-full flex-1 bg-white dark:bg-stone-900 p-4 text-sm">
-        <div
-          onClick={(e) => e.stopPropagation()}
-          className={`${customScrollbar} flex-1 overflow-y-auto`}
-        >
+      <main className="h-full bg-background flex-1 p-4 text-sm transition-colors">
+        <div className={`${customScrollbar} flex-1 overflow-y-auto`}>
           <div className="flex flex-col gap-4">
-            <div className="bg-gray-100 dark:bg-stone-800 p-2 rounded-lg">
-              <h3 className="text-gray-800 dark:text-gray-200 font-semibold">
-                Appearance
-              </h3>
+            {/* card */}
+            <div className="p-2 rounded-lg bg-card text-card-foreground border ">
+              <h3 className="font-semibold">Appearance</h3>
               <div className="flex gap-4 mt-4">
                 {APPEARANCE_BUTTONS.map(({ id, title, icon: Icon }) => (
                   <div className="flex flex-col items-center gap-1">
                     <button
                       key={id}
                       onClick={() => setAppearance(id)}
-                      className={`rounded-xl border w-20 h-20 transition grid place-content-center
-                ${
-                  appearance === id
-                    ? "border-blue-500 bg-blue-500/10"
-                    : "border-gray-300 dark:border-zinc-700"
-                }`}
+                      className={`w-20 h-20 rounded-xl border grid place-content-center cursor-pointer hover:outline
+                ${appearance === id ? "outline bg-primary/20 " : ""}`}
                     >
-                      <span className="dark:text-gray-100">
+                      <span className="">
                         <Icon />
                       </span>
                     </button>
@@ -50,8 +42,8 @@ const SettingsApp = () => {
               </div>
             </div>
 
-            <div className="bg-gray-100 dark:bg-stone-800 p-2 rounded-lg">
-              <h3 className="dark:text-gray-200 font-semibold ">Colour</h3>
+            <div className="p-2 rounded-lg bg-card text-card-foreground border">
+              <h3 className="font-semibold ">Colour</h3>
               <div className="flex gap-4 mt-4 rounded-md">
                 <div className="flex gap-2">
                   <div className="w-5 h-5 bg-sky-500 rounded-full"></div>
@@ -62,8 +54,8 @@ const SettingsApp = () => {
                   <div className="w-5 h-5 bg-pink-500 rounded-full"></div>
                 </div>
               </div>
-              <div className="border-t pt-2 mt-2 border-t-gray-300 dark:text-gray-300">
-                <p>text highlight colour</p>
+              <div className="border-t pt-2 mt-2">
+                <p className="text-text-secondary">text highlight colour</p>
               </div>
             </div>
           </div>

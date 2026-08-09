@@ -3,7 +3,7 @@ import {
   Lock,
   Moon,
   Wifi,
-  Monitor,
+  Eclipse,
   Volume2,
   Maximize,
   Bluetooth,
@@ -42,10 +42,9 @@ export const Controls: ControlItem[] = [
     id: "theme",
     type: "wide",
     label: "Dark",
-    icon: Moon,
+    icon: Eclipse,
     isActive: false,
     colSpan: "col-span-2",
-    action: () => console.log("Focus Toggled"),
   },
   {
     id: "music",
@@ -56,10 +55,10 @@ export const Controls: ControlItem[] = [
 
   // row 2: screen mirror (2x1)
   {
-    id: "mirror",
+    id: "focus",
     type: "wide",
-    label: "Screen",
-    icon: Monitor,
+    label: "Focus",
+    icon: Moon,
     isActive: false,
     colSpan: "col-span-2",
     action: () => console.log("Mirroring..."),

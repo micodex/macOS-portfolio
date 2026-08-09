@@ -7,10 +7,10 @@ import {
   ChevronRight,
   RotateCw,
   Lock,
-  Share2,
-  Plus,
-  LayoutGrid,
   Globe,
+  Copy,
+  CirclePlus,
+  SquareArrowOutUpRight,
 } from "lucide-react";
 
 // components
@@ -78,23 +78,23 @@ const SafariApp = () => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#F5F5F7]/93 backdrop-blur-2xl">
+    <div className="flex flex-col h-full bg-background/90 window-backdrop">
       {/* Safari Toolbar */}
-      <div className="h-12 bg-[#F5F5F7] border-b border-gray-300/50 flex items-center px-4 gap-4 shrink-0  relative">
+      <div className="h-12 bg-card border-b flex items-center px-4 gap-4 shrink-0 relative">
         {/* -- navigation controls */}
-        <div className="flex gap-4 p-1 text-gray-600 bg-gray-200 rounded-full">
+        <div className="flex gap-4 p-1 rounded-full bg-input/70 ring-2 ring-border">
           <button
             onClick={handleBack}
             disabled={currentIndex === 0}
-            className="hover:bg-gray-300 hover:text-white active:scale-95 p-1 rounded-full transition-colors disabled:opacity-30 cursor-pointer "
+            className="hover:bg-card active:scale-95 p-1 rounded-full transition-colors disabled:opacity-30 cursor-pointer "
           >
             <ChevronLeft size={20} strokeWidth={2} />
           </button>
-          <span className="text-gray-300">|</span>
+          <span className="opacity-40">|</span>
           <button
             onClick={handleForward}
             disabled={currentIndex === history.length - 1}
-            className="hover:bg-gray-300 hover:text-white active:scale-95 p-1 rounded-full transition-colors disabled:opacity-30 cursor-pointer "
+            className="hover:bg-card active:scale-95 p-1 rounded-full transition-colors disabled:opacity-30 cursor-pointer "
           >
             <ChevronRight size={20} strokeWidth={2} />
           </button>
@@ -105,9 +105,14 @@ const SafariApp = () => {
           onSubmit={handleSubmit}
           className="flex-1 flex justify-center max-w-xl mx-auto"
         >
-          <div className="group relative w-full h-8 bg-gray-300/30 hover:bg-gray-300/50 focus-within:bg-white focus-within:shadow-sm focus-within:ring-2 focus-within:ring-blue-500/20 rounded-full flex items-center justify-center transition-all cursor-text text-sm text-gray-700">
+          <div
+            className="group border-input relative w-full h-8 bg-input/70   
+              hover:bg-input/50
+              focus-within:ring-ring/50 rounded-full flex items-center justify-center
+              cursor-text text-sm transition-all ring-2 ring-border"
+          >
             {/* Lock Icon */}
-            <div className="absolute left-4 text-gray-500">
+            <div className="absolute left-4 text-muted-foreground">
               {isLoading ? (
                 <RotateCw size={12} className="animate-spin" />
               ) : (
@@ -117,7 +122,8 @@ const SafariApp = () => {
 
             {/* Input */}
             <input
-              className="bg-transparent border-none outline-none text-center w-full px-8 focus:text-left group-focus-within:text-left placeholder-gray-500"
+              className="bg-transparent border-none outline-none text-center w-full px-8 
+                focus:text-left group-focus-within:text-left text-muted-foreground"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onFocus={(e) => e.target.select()}
@@ -127,27 +133,22 @@ const SafariApp = () => {
             <button
               type="button"
               onClick={handleRefresh}
-              className="absolute right-4 p-0.5 rounded-md hover:bg-black/5 opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-all"
+              className="absolute right-4 p-0.5 rounded-md hover:bg-black/5 opacity-0 group-hover:opacity-100
+                focus-within:opacity-100 transition-all"
             >
-              <RotateCw size={12} className="text-gray-500" />
+              <RotateCw size={12} className="text-muted-foreground" />
             </button>
           </div>
         </form>
 
         {/* -- right actions */}
-        <div className="flex gap-3 text-gray-600">
-          <Share2
+        <div className="flex gap-3 text-secondary-foreground transition-colors">
+          <SquareArrowOutUpRight
             size={18}
-            className="hover:text-blue-500 cursor-pointer transition-colors"
+            className="hover:text-primary cursor-pointer"
           />
-          <Plus
-            size={18}
-            className="hover:text-blue-500 cursor-pointer transition-colors"
-          />
-          <LayoutGrid
-            size={18}
-            className="hover:text-blue-500 cursor-pointer transition-colors"
-          />
+          <CirclePlus size={18} className="hover:text-primary cursor-pointer" />
+          <Copy size={18} className="hover:text-primary cursor-pointer" />
         </div>
       </div>
 
@@ -157,11 +158,11 @@ const SafariApp = () => {
       >
         {/* fake progress bar */}
         {isLoading && (
-          <div className="absolute top-0 left-0 w-full h-0.5 bg-gray-200 z-50">
+          <div className="absolute top-0 left-0 w-full h-0.5 bg-transparent z-50">
             <motion.div
               initial={{ width: "0%" }}
               animate={{ width: ["10%", "30%", "100%"] }}
-              className="h-full bg-blue-500"
+              className="h-full bg-primary"
             />
           </div>
         )}
@@ -173,12 +174,12 @@ const SafariApp = () => {
 
         {/* 404 - External Link Mock */}
         {currentItem.type === "404" && (
-          <div className="flex flex-col items-center justify-center h-full text-gray-400 p-8 text-center">
+          <div className="flex flex-col items-center justify-center h-full p-8 text-center">
             <Globe size={64} className="mb-4 opacity-50" />
-            <h2 className="text-xl font-bold text-gray-600 mb-2">
+            <h2 className="text-xl font-bold text-foreground mb-2">
               Cannot connect to server
             </h2>
-            <p className="max-w-md">
+            <p className="max-w-md text-secondary-foreground">
               Safari cannot open the page "{currentItem.url}" because the server
               where this page is located is not responding.
               <br />

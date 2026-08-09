@@ -1,4 +1,4 @@
-import { IconType } from "react-icons";
+import type { SideBarItem } from "@/components/ui/SideBar";
 import {
   FaInstagram,
   FaTelegramPlane,
@@ -9,46 +9,59 @@ import {
   FaInbox,
 } from "react-icons/fa";
 
-interface SocialLink {
-  label: string;
-  icon: IconType;
-  url: string;
-}
-
-export const SOCIAL_LINKS: SocialLink[] = [
+export const SOCIAL_LINKS: SideBarItem[] = [
   {
-    label: "Email",
-    icon: FaInbox,
-    url: "#",
-  },
-  {
-    label: "Github",
-    icon: FaGithub,
-    url: "https://github.com/micodex",
-  },
-  {
-    label: "Linkedin",
-    icon: FaLinkedin,
-    url: "https://www.linkedin.com/in/milad-gharibi-9ba94835a",
-  },
-  {
-    label: "Website",
-    icon: FaGlobe,
-    url: "https://micodex-portfolio.vercel.app",
-  },
-  {
-    label: "Codepen",
-    icon: FaCodepen,
-    url: "https://codepen.io/mi_codex",
-  },
-  {
-    label: "Instagram",
-    icon: FaInstagram,
-    url: "https://www.instagram.com/web.script/",
-  },
-  {
-    label: "Telegram",
-    icon: FaTelegramPlane,
-    url: "https://t.me/heyitsmg",
+    category: "Social Links",
+    items: [
+      {
+        id: "email",
+        label: "Email",
+        icon: FaInbox,
+        color: "text-purple-500",
+        // url: "#",
+      },
+      {
+        id: "Github",
+        label: "Github",
+        icon: FaGithub,
+        color: "text-blue-500",
+        // url: "https://github.com/micodex",
+      },
+      {
+        id: "linkedin",
+        label: "Linkedin",
+        icon: FaLinkedin,
+        color: "text-emerald-500",
+        // url: "https://www.linkedin.com/in/milad-gharibi-9ba94835a",
+      },
+      {
+        id: "website",
+        label: "Website",
+        icon: FaGlobe,
+        color: "text-blue-400",
+        // url: "https://micodex-portfolio.vercel.app",
+      },
+      {
+        id: "codepen",
+        label: "Codepen",
+        icon: FaCodepen,
+        color: "text-blue-400",
+        // url: "https://codepen.io/mi_codex",
+      },
+      {
+        id: "instagram",
+        label: "Instagram",
+        icon: FaInstagram,
+        color: "text-blue-400",
+        // url: "https://www.instagram.com/web.script/",
+      },
+      {
+        id: "telegram",
+        label: "Telegram",
+        icon: FaTelegramPlane,
+        color: "text-blue-400",
+        // url: "https://t.me/heyitsmg",
+      },
+    ],
   },
 ];

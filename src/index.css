@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 
 @import "tailwindcss";
+
 /* @custom-variant dark (&:where(.dark, .dark *)); */
 @custom-variant dark {
   &:where(.dark, .dark *) {
@@ -8,31 +9,146 @@
   }
 }
 
-body {
-  width: 100dvw;
-  height: 100dvh;
-  overflow: hidden;
-  background-color: #68a7ff;
-  background-image: url("/wallpaper-light.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+/* default theme for light mode */
+:root {
+  --background-image: url("/wallpaper-light.jpg");
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.3211 0 0);
+  --card: oklch(99% 0 0);
+  --card-foreground: oklch(0.3211 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.3211 0 0);
+  --primary: oklch(0.6231 0.188 259.8145);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.967 0.0029 264.5419);
+  --secondary-foreground: oklch(0.4461 0.0263 256.8018);
+  --muted: oklch(0.9846 0.0017 247.8389);
+  --muted-foreground: oklch(0.551 0.0234 264.3637);
+  --accent: oklch(0.9514 0.025 236.8242);
+  --accent-foreground: oklch(0.3791 0.1378 265.5222);
+  --destructive: oklch(0.6368 0.2078 25.3313);
+  --border: oklch(0.9276 0.0058 264.5313);
+  --input: oklch(0.9276 0.0058 264.5313);
+  --ring: oklch(0.6231 0.188 259.8145);
+  --sidebar: oklch(0.9846 0.0017 247.8389);
+  --sidebar-foreground: oklch(0.3211 0 0);
+  --sidebar-primary: oklch(0.6231 0.188 259.8145);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.9514 0.025 236.8242);
+  --sidebar-accent-foreground: oklch(0.3791 0.1378 265.5222);
+  --sidebar-border: oklch(0.9276 0.0058 264.5313);
+  --sidebar-ring: oklch(0.6231 0.188 259.8145);
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  --radius: 0.625rem;
+}
+
+/* theme for dark mode */
+.dark {
+  --background-image: url("/wallpaper-dark.jpg");
+  --background: oklch(0.2046 0 0);
+  --foreground: oklch(0.9219 0 0);
+  --card: oklch(0.2686 0 0);
+  --card-foreground: oklch(0.9219 0 0);
+  --popover: oklch(0.2686 0 0);
+  --popover-foreground: oklch(0.9219 0 0);
+  --primary: oklch(0.6231 0.188 259.8145);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.2686 0 0);
+  --secondary-foreground: oklch(0.9219 0 0);
+  --muted: oklch(0.2393 0 0);
+  --muted-foreground: oklch(0.7155 0 0);
+  --accent: oklch(0.3791 0.1378 265.5222);
+  --accent-foreground: oklch(0.8823 0.0571 254.1284);
+  --destructive: oklch(0.6368 0.2078 25.3313);
+  --border: oklch(0.3715 0 0);
+  --input: oklch(0.3715 0 0);
+  --ring: oklch(0.6231 0.188 259.8145);
+  --sidebar: oklch(0.2046 0 0);
+  --sidebar-foreground: oklch(0.9219 0 0);
+  --sidebar-primary: oklch(0.6231 0.188 259.8145);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.3791 0.1378 265.5222);
+  --sidebar-accent-foreground: oklch(0.8823 0.0571 254.1284);
+  --sidebar-border: oklch(0.3715 0 0);
+  --sidebar-ring: oklch(0.6231 0.188 259.8145);
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  --radius: 0.625rem;
 }
 
 @theme {
   --font-georama: "Georama", sans-serif;
   --font-roboto: "Roboto Mono", monospace;
-  --breakpoint-3xl: 1920px;
+  /*  */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 @layer base {
-  mark {
-    @apply bg-yellow-200/70 text-yellow-950 rounded-sm px-1 py-px;
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    /* default text */
+    @apply bg-background text-foreground;
+    width: 100dvw;
+    height: 100dvh;
+    overflow: hidden;
+    background-color: #68a7ff;
+    background-image: var(--background-image);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
-  body {
-    /* default text color */
-    @apply text-gray-800;
+  mark {
+    @apply bg-yellow-200/70 text-yellow-950 rounded-sm px-1 py-px;
   }
 
   main {
@@ -40,14 +156,14 @@ body {
   }
 
   nav {
-    @apply h-10 flex justify-between items-center bg-white/10 dark:bg-black/50 dark:text-gray-50 backdrop-blur-3xl px-5 select-none;
+    @apply h-10 flex justify-between items-center bg-white/5 dark:bg-black/5 backdrop-blur-lg px-5 select-none;
 
     .hover-effect {
-      @apply px-3 py-1 hover:bg-white/20 rounded-full transition-colors cursor-pointer active:bg-white/40;
+      @apply px-3 py-1 hover:bg-accent/30 rounded-full transition-colors cursor-pointer active:bg-accent/40;
     }
 
     div {
-      @apply flex items-center max-sm:w-full max-sm:justify-center gap-5;
+      @apply flex items-center max-sm:w-full max-sm:justify-center gap-2;
 
       &:last-child {
         @apply max-sm:hidden;
@@ -64,7 +180,7 @@ body {
     }
 
     time {
-      @apply text-sm font-medium text-black text-white;
+      @apply text-sm font-medium;
     }
 
     /* -- taks icons : menu, bluetooth, wifi ... -- */
@@ -76,11 +192,11 @@ body {
       }
 
       li:hover {
-        @apply bg-white/50;
+        @apply bg-accent/30;
       }
 
       .opened {
-        @apply text-gray-600 bg-white/50;
+        @apply text-accent-foreground bg-accent;
       }
     }
   }
@@ -93,6 +209,6 @@ body {
   }
 
   .window-backdrop {
-    @apply bg-white/80 dark:bg-black/80  backdrop-blur-2xl;
+    @apply bg-white/80 dark:bg-black/80 backdrop-blur-2xl;
   }
 }

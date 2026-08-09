@@ -72,7 +72,7 @@ const initialState: OSState = {
     bluetooth: false,
     lock: false, // lockscreen
     playing: false, // is audio playing?
-    ccOpen: true, // control center
+    ccOpen: false, // control center open?
   },
 };
 

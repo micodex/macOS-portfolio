@@ -1,15 +1,20 @@
 import ImageSkeleton from "@/components/ui/ImageSkeleton";
+import { customScrollbar } from "@/lib/scrollbar";
 import { type Project } from "@/data/finder";
 
 const ProjectPage = ({ project }: { project: Project }) => (
-  <div className="h-full bg-white overflow-auto py-10">
+  <div
+    className={`h-full bg-background overflow-auto py-10 ${customScrollbar}`}
+  >
     {/* Hero Header */}
     <div className="relative flex flex-col items-center justify-center text-center">
       <div className="mb-4">
         <h1 className="text-4xl font-bold mb-2 drop-shadow-xl">
           {project.title}
         </h1>
-        <p className="opacity-80 max-w-md mx-auto">{project.desc}</p>
+        <p className="opacity-80 max-w-md mx-auto text-secondary-foreground">
+          {project.desc}
+        </p>
       </div>
 
       {/* project links */}
@@ -18,7 +23,8 @@ const ProjectPage = ({ project }: { project: Project }) => (
           href={project.demo}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-4 py-2 rounded-full bg-gray-200  hover:bg-sky-500 hover:text-white cursor-pointer transition-colors shadow-lg r border border-gray-300 active:scale-90"
+          className="text-foreground px-4 py-2 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground
+            cursor-pointer transition-colors shadow-lg border border-border active:scale-90"
         >
           Demo
         </a>
@@ -26,7 +32,9 @@ const ProjectPage = ({ project }: { project: Project }) => (
           href={project.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-4 py-2 rounded-full bg-gray-900 text-white hover:bg-sky-500 cursor-pointer transition-colors shadow-lg r border border-gray-300 active:scale-90"
+          className="px-4 py-2 bg-black/90 text-white dark:bg-white/90 dark:text-black hover:bg-primary
+            hover:text-primary-foreground transition-colors shadow-lg rounded-full
+            border border-border active:scale-90 cursor-pointer"
         >
           GitHub
         </a>
@@ -47,7 +55,7 @@ const ProjectPage = ({ project }: { project: Project }) => (
         {project.tags.map((t) => (
           <span
             key={t}
-            className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-600 border border-gray-200"
+            className="px-3 py-1 bg-secondary rounded-full text-xs font-medium text-secondary-foreground border"
           >
             {t}
           </span>
@@ -55,10 +63,10 @@ const ProjectPage = ({ project }: { project: Project }) => (
       </div>
 
       <div className="space-y-6">
-        <div className="h-4 bg-gray-100 rounded w-5/6 animate-pulse" />
-        <div className="h-4 bg-gray-100 rounded w-full animate-pulse" />
-        <div className="h-4 bg-gray-100 rounded w-full animate-pulse" />
-        <div className="h-4 bg-gray-100 rounded w-3/4 animate-pulse" />
+        <div className="h-4 bg-foreground/10 rounded w-5/6 animate-pulse" />
+        <div className="h-4 bg-foreground/10 rounded w-full animate-pulse" />
+        <div className="h-4 bg-foreground/10 rounded w-full animate-pulse" />
+        <div className="h-4 bg-foreground/10 rounded w-3/4 animate-pulse" />
       </div>
     </div>
   </div>

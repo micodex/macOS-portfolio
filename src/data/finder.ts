@@ -10,15 +10,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-export interface SideBarItem {
-  category: string;
-  items: {
-    id: string;
-    label: string;
-    icon: LucideIcon;
-    color: string;
-  }[];
-}
+import type { SideBarItem } from "./settings";
 
 export const FINDER_SIDEBAR: SideBarItem[] = [
   {
@@ -109,25 +101,25 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/micodex/npm-avecolor",
     demo: "https://www.npmjs.com/package/avecolor",
   },
-  {
-    id: 5,
-    title: "EcoTracker",
-    desc: "IoT dashboard for monitoring smart city energy.",
-    tags: ["Vue", "D3.js", "IoT"],
-    image: "",
-    github: "",
-    demo: "",
-  },
+  // {
+  //   id: 5,
+  //   title: "EcoTracker",
+  //   desc: "IoT dashboard for monitoring smart city energy.",
+  //   tags: ["Vue", "D3.js", "IoT"],
+  //   image: "",
+  //   github: "",
+  //   demo: "",
+  // },
 
-  {
-    id: 6,
-    title: "PixelArt",
-    desc: "Browser-based sprite editor for game devs.",
-    tags: ["Canvas API", "React"],
-    image: "",
-    github: "",
-    demo: "",
-  },
+  // {
+  //   id: 6,
+  //   title: "PixelArt",
+  //   desc: "Browser-based sprite editor for game devs.",
+  //   tags: ["Canvas API", "React"],
+  //   image: "",
+  //   github: "",
+  //   demo: "",
+  // },
 ];
 
 export interface Skills {

@@ -6,8 +6,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <div
       className="group flex flex-col justify-center p-2 
-      rounded-xl hover:bg-blue-50 cursor-pointer transition-colors
-      duration-100 hover:outline-2 outline-blue-100 ease-in max-w-xl"
+      rounded-xl hover:bg-card cursor-pointer outline-accent
+      transition-colors hover:outline-2 ease-out max-w-xl"
     >
       {/* thumbnail */}
       <a
@@ -36,14 +36,14 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
         {/* text info */}
         <div className="mt-auto flex flex-col ml-2">
-          <span className="text-md font-semibold text-gray-700 truncate group-hover:text-blue-600">
+          <span className="text-md font-semibold text-foreground truncate group-hover:text-primary">
             {project.title}
             <span className="opacity-0 group-hover:opacity-100 transition-opacity">
               {" "}
               ↗
             </span>
           </span>
-          <span className="text-sm text-gray-500 line-clamp-2">
+          <span className="text-sm text-muted-foreground line-clamp-2">
             {project.desc}
           </span>
         </div>
