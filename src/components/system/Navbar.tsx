@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { useOS } from "@/context/useOS";
-
 import { navLinks } from "@/data/navbar";
+
+// icons
 import {
   Bluetooth,
   BluetoothOff,
@@ -10,25 +12,31 @@ import {
   Wifi,
   WifiOff,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { FaApple } from "react-icons/fa";
 
 const Navbar = () => {
   const { state, dispatch } = useOS();
 
   const activeApp = state.apps.find((app) => app.id === state.activeAppId);
-  const ccOpen = state.systemStatus.ccOpen; // is control center open
+  const ccOpen = state.systemStatus.ccOpen; // is control center open?
   const title = activeApp ? activeApp.title : "Desktop";
 
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
+    // update time every 1 sec
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
+  // const formatedDate = new Intl.DateTimeFormat("fa-IR", {
+  //   timeStyle: "short",
+  //   dateStyle: "medium",
+  // }).format(time);
+
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-US", {
-      weekday: "short",
+      // weekday: "short",
       month: "short",
       day: "numeric",
     });
@@ -41,26 +49,29 @@ const Navbar = () => {
     });
   };
 
-  const iconSize: number = 20;
+  const iconSize: number = 22;
 
   return (
     <nav>
-      <div className="flex">
-        <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="logo" />
-        {/* active app */}
-        <span className="hover-effect font-bold">{title}</span>
+      <div className="separator">
+        {/* logo */}
+        <FaApple size={20} className="logo" />
 
+        {/* active app */}
+        <span className="app-title">{title}</span>
+
+        {/* projects contact skills */}
         <ul className="nav-lists">
           {navLinks.map(({ name }) => (
             <li key={name}>
-              <span className="hover-effect">{name}</span>
+              <span>{name}</span>
             </li>
           ))}
         </ul>
       </div>
 
       {/* task icons and time & date */}
-      <div>
+      <div className="separator">
         <ul className="task-icons">
           <li>
             <Search size={iconSize} />
@@ -100,7 +111,8 @@ const Navbar = () => {
           }
         </ul>
         <time>
-          {formatDate(time)} &nbsp; {formatTime(time)}
+          <span>{formatDate(time)}</span>
+          <span>{formatTime(time)}</span>
         </time>
       </div>
     </nav>
