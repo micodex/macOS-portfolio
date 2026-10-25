@@ -1,6 +1,6 @@
 import FinderApp from "./components/apps/Finder/FinderApp";
 import SafariApp from "./components/apps/Safari/SafariApp";
-import SettingsApp from "./components/apps/SettingsApp";
+import SettingsApp from "./components/apps/Settings/SettingsApp";
 import TerminalApp from "./components/apps/TerminalApp";
 import NoteApp from "./components/apps/NoteApp";
 import MailApp from "./components/apps/MailApp";

@@ -5,26 +5,33 @@ import Window from "@/components/system/Window";
 import Navbar from "@/components/system/Navbar";
 import ControlCenter from "./components/system/ControlCenter/ControlCenter";
 
-import { useOS } from "@/context/useOS";
+import { useOS } from "@/context/OSContext";
+import { useWallpaper } from "@/context/WallpaperContext";
+import Wallpaper from "./components/system/Wallpaper";
 
 function Desktop() {
   const { state } = useOS();
+  const { currentWallpaper } = useWallpaper();
 
   return (
-    <div className="font-georama">
-      {/* control center */}
-      <ControlCenter />
+    <div className="relative font-georama min-h-screen overflow-hidden">
+      <Wallpaper src={currentWallpaper} />
 
-      {/* navigation */}
-      <Navbar />
+      <div className="z-10 h-full">
+        {/* control center */}
+        <ControlCenter />
 
-      {/* windows layer */}
-      {state.apps.map((app) => (
-        <Window key={app.id} app={app} />
-      ))}
+        {/* navigation */}
+        <Navbar />
 
-      {/* Dock */}
-      <Dock />
+        {/* windows layer */}
+        {state.apps.map((app) => (
+          <Window key={app.id} app={app} />
+        ))}
+
+        {/* Dock */}
+        <Dock />
+      </div>
     </div>
   );
 }

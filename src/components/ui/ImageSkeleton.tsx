@@ -23,7 +23,7 @@ const ImageSkeleton = ({ src, alt, className }: ImageSkeletonProps) => {
       />
 
       {loading && (
-        <div className="absolute inset-0 bg-sky-200/50 animate-pulse"></div>
+        <div className="absolute inset-0 bg-gray-300/50 dark:bg-gray-700/50 animate-pulse"></div>
       )}
     </div>
   );

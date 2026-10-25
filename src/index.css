@@ -144,7 +144,7 @@
     height: 100dvh;
     overflow: hidden;
     background-color: #68a7ff;
-    background-image: var(--background-image);
+    /* background-image: var(--background-image); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -172,7 +172,8 @@
 
   /* main navbar */
   nav {
-    @apply h-10 flex justify-between items-center bg-background/8 backdrop-blur-lg px-5 select-none;
+    @apply h-10 flex justify-between items-center bg-background/10 backdrop-blur-lg px-5 select-none
+      text-foreground;
 
     .logo {
       @apply text-foreground mb-0.5;
@@ -215,5 +216,18 @@
         @apply bg-foreground/10;
       }
     }
+  }
+}
+
+/* animatoin for desktop wallpaper */
+.wallpaper-skeleton {
+  background: linear-gradient(90deg, #e0e3e6, #47484a, #e0e3e6);
+  background-size: 200% 100%;
+  animation: wallpaper-shimmer 4s linear infinite;
+}
+
+@keyframes wallpaper-shimmer {
+  to {
+    background-position-x: -200%;
   }
 }
