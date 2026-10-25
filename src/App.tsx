@@ -15,7 +15,7 @@ function Desktop() {
 
   return (
     <div className="relative font-georama min-h-screen overflow-hidden">
-      <Wallpaper src={currentWallpaper} />
+      <Wallpaper src={`${import.meta.env.BASE_URL}${currentWallpaper}`} />
 
       <div className="z-10 h-full">
         {/* control center */}

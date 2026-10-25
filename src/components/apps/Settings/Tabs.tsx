@@ -75,8 +75,8 @@ export function WallpaperTab() {
                   focus-visible:outline-primary"
               >
                 <ImageSkeleton
-                  src={wallpaper.thumbnail}
-                  alt=""
+                  src={`${import.meta.env.BASE_URL}${wallpaper.thumbnail}`}
+                  alt={`${wallpaper.name} thumbnail`}
                   className={`aspect-video w-40 rounded-lg transition-opacity group-hover:opacity-80 ${
                     isSelected
                       ? "ring-2 ring-primary ring-offset-2 ring-offset-card"
