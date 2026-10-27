@@ -21,13 +21,13 @@ const NoteApp = () => {
         Wed, 2025 Dec 10, 1:43 PM
       </span>
 
-      <h2 className="mb-6 font-bold text-2xl">Profile</h2>
+      <h2 className="mb-0 font-bold text-2xl">Profile</h2>
       <div className="flex flex-col items-center">
         <div className="w-24 h-24 rounded-full overflow-hidden">
           <ImageSkeleton
             src={ProfileImg}
             alt="profile picture"
-            className="select-none opacity-89 w-full aspect-square"
+            className="select-none opacity-95 w-full aspect-square"
           />
         </div>
         <span className="mt-2 font-semibold">Milad Gharibi</span>
@@ -57,16 +57,43 @@ const NoteApp = () => {
         <h3 className="text-lg font-bold">About me</h3>
         <p className="mt-2">
           I&apos;m a self-taught{" "}
-          <b className="underline decoration-wavy decoration-yellow-600">
+          <b className="underline underline-offset-1 decoration-wavy decoration-yellow-600">
             web developer
           </b>{" "}
-          focused on creating clean, fast, and modern web experiences. I enjoy
-          turning ideas into functional products with attention to detail.
-          <br></br>
-          <br></br>I work mainly with <mark>React</mark>, <mark>Next.js</mark>{" "}
-          <b>TypeScript</b>, and <b>Tailwind CSS</b> .I love learning new tools
-          and improving my craft every day. Currently building real-world
-          projects to sharpen my skills.
+          passionate about building{" "}
+          <mark>modern, responsive, and user-friendly web applications</mark>.
+          <br />
+          <br />I primarily work with <b>JavaScript, </b> <b>TypeScript, </b>
+          <b>React</b>, and <b>Next.js</b>, while expanding my skills in{" "}
+          <b className="underline underline-offset-1 decoration-wavy decoration-purple-500">
+            full-stack
+          </b>{" "}
+          development and backend technologies.
+          <br />
+          <br />
+          I enjoy turning ideas into clean, practical, and well-structured
+          digital experiences. From crafting intuitive user interfaces and
+          interactive dashboards to working with APIs and databases, I focus on
+          writing maintainable code and building solutions that solve real-world
+          problems.
+          <br />
+          <br />
+          Beyond web development, I&apos;m particularly interested in{" "}
+          <mark>integrating AI into business applications</mark>, building
+          intelligent automation workflows, and developing{" "}
+          <mark>
+            AI agents that help businesses streamline operations, reduce
+            repetitive tasks, and improve efficiency
+          </mark>
+          .<br />
+          <br />
+          I&apos;m continuously learning, exploring new technologies, and
+          improving my skills to build meaningful products that combine{" "}
+          <mark>
+            modern web development, thoughtful design, and practical AI
+            solutions
+          </mark>
+          .
         </p>
       </section>
     </div>
