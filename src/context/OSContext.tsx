@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 import { appsConfig } from "@/apps.config";
 
@@ -195,4 +195,11 @@ export const OSProvider = ({ children }: { children: React.ReactNode }) => {
       {children}
     </OSContext.Provider>
   );
+};
+
+// Custom Hook for easy access
+export const useOS = () => {
+  const context = useContext(OSContext);
+  if (!context) throw new Error("useOS must be used within an OSProvider");
+  return context;
 };

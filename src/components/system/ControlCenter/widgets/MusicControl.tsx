@@ -1,4 +1,4 @@
-import { useOS } from "@/context/useOS";
+import { useOS } from "@/context/OSContext";
 import { useEffect, useState } from "react";
 import { Pause, Play, SkipBack, SkipForward } from "lucide-react";
 

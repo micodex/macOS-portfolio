@@ -68,7 +68,7 @@ function DockItem({
   const targetSize = useTransform(
     mouseDistance,
     [-distance, 0, distance],
-    [baseItemSize, magnification, baseItemSize]
+    [baseItemSize, magnification, baseItemSize],
   );
   const size = useSpring(targetSize, spring);
 
@@ -93,9 +93,9 @@ function DockItem({
         React.isValidElement(child)
           ? cloneElement(
               child as React.ReactElement<{ isHovered?: MotionValue<number> }>,
-              { isHovered }
+              { isHovered },
             )
-          : child
+          : child,
       )}
     </motion.div>
   );
@@ -151,7 +151,7 @@ function DockIcon({ children, className = "" }: DockIconProps) {
   );
 }
 
-import { useOS } from "@/context/useOS";
+import { useOS } from "@/context/OSContext";
 import ImageSkeleton from "../ui/ImageSkeleton";
 
 export default function Dock({
@@ -170,7 +170,7 @@ export default function Dock({
 
   const maxHeight = useMemo(
     () => Math.max(dockHeight, magnification + magnification / 2 + 4),
-    [magnification, dockHeight]
+    [magnification, dockHeight],
   );
   const heightRow = useTransform(isHovered, [0, 1], [panelHeight, maxHeight]);
   const height = useSpring(heightRow, spring);

@@ -6,7 +6,7 @@ import MusicControl from "./widgets/MusicControl";
 import SliderControl from "./widgets/SliderControl";
 import CircularControl from "./widgets/CircularControl";
 
-import { useOS } from "@/context/useOS";
+import { useOS } from "@/context/OSContext";
 
 const ControlCenter = () => {
   const { state } = useOS();

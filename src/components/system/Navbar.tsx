@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useOS } from "@/context/useOS";
+import { useOS } from "@/context/OSContext";
 import { navLinks } from "@/data/navbar";
 
 // icons

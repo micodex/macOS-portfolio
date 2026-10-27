@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useOS } from "@/context/useOS";
+import { useOS } from "@/context/OSContext";
 import { type ControlItem } from "../controls.config";
 
 // circualr control (1x1)

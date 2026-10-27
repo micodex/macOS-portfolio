@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { type AppData } from "@/context/OSContext";
-import { useOS } from "@/context/useOS";
+import { useOS } from "@/context/OSContext";
 import { getAppComponent } from "@/apps.config";
 import { X, Minus, Maximize2 } from "lucide-react";
 

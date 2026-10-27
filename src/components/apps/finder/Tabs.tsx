@@ -2,10 +2,10 @@ import ProjectCard from "./ProjectCard";
 import ImageSkeleton from "@/components/ui/ImageSkeleton";
 
 import { DOWNLOADS, MY_SKILLS, PROJECTS } from "@/data/finder";
-import profilePic from "@/assets/images/profile.jpg";
+import profilePic2 from "@/assets/images/profile2.jpg";
 import { ArrowUpRight } from "lucide-react";
 
-import { useOS } from "@/context/useOS";
+import { useOS } from "@/context/OSContext";
 import TopBar from "./TopBar";
 import { useState } from "react";
 
@@ -16,14 +16,22 @@ export const AboutTab = () => {
   return (
     <div className="flex flex-col items-center justify-center h-full text-center p-8 space-y-4">
       <ImageSkeleton
-        src={profilePic}
+        src={profilePic2}
         alt="profile image"
         className="aspect-square w-28 overflow-hidden rounded-full mb-4"
       />
       <h2 className="text-2xl font-bold mb-2">Milad Gharibi</h2>
       <p className="max-w-md text-muted-foreground mb-4">
-        I am a creative developer building interfaces that feel alive. Welcome
-        to my digital garden.
+        I am a creative developer building interfaces that feel alive.
+        <br />
+        <a
+          className=" inline text-primary hover:underline cursor-pointer"
+          href="https://micodex-portfolio.vercel.app/"
+          target="_blank"
+        >
+          Visit My website
+        </a>{" "}
+        to read more about me.
       </p>
       <button
         onClick={() => dispatch({ type: "OPEN", id: "notes" })}
