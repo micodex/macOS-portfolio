@@ -154,8 +154,8 @@ export const MY_SKILLS = [
     category: "tools",
     skills: [
       { label: "Git", icon: "text.png", level: "50%" },
-      { label: "Github", icon: "text.png", level: "60%" },
-      { label: "Docker", icon: "text.png", level: "1%" },
+      { label: "Github", icon: "text.png ", level: "60%" },
+      { label: "Docker", icon: "text.png ", level: "1%" },
       { label: "CI/CD", icon: "sh.png", level: "1%" },
     ],
   },
