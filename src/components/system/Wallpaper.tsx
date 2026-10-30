@@ -29,7 +29,7 @@ export default function Wallpaper({ src }: WallpaperProps) {
         <div className="flex flex-col items-center gap-3 text-black/70 dark:text-white animate-pulse">
           <FaApple size={120} />
           <p className="text-sm">
-            {failed ? "Wallpaper unavailable" : "Loading wallpaper…"}
+            {failed ? "Wallpaper unavailable!" : "Loading wallpaper…"}
           </p>
         </div>
       </div>

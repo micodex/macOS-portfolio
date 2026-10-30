@@ -5,9 +5,11 @@ import { motion } from "motion/react";
 export const BouncyText = ({
   text = "Bouncy Animation",
   style,
+  repeat,
 }: {
   text?: string;
   style?: string;
+  repeat?: number;
 }) => {
   return (
     <h2 className={style}>
@@ -20,7 +22,7 @@ export const BouncyText = ({
             transition: {
               delay: i * 0.08,
               duration: 0.4,
-              repeat: 0,
+              repeat: repeat,
               repeatDelay: 2,
               ease: "easeInOut",
             },
