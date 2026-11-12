@@ -95,6 +95,17 @@ export const SkillsTab = () => {
         viewMode={viewMode}
         onViewModeChange={setViewMode}
       />
+      <h2 className="mb-8 ms-4">
+        To read full skills, please visit my website{" "}
+        <a
+          rel="noopener noreferrer"
+          target="_blank"
+          className="text-primary hover:underline decoration-1"
+          href="https://micodex-portfolio.vercel.app/"
+        >
+          micodex <ArrowUpRight size={16} className="inline" />
+        </a>
+      </h2>
       <div className="space-y-6">
         {MY_SKILLS.map(({ category, skills }) => (
           <div className="" key={category}>

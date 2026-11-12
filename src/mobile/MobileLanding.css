@@ -1,0 +1,371 @@
+.mobile-landing {
+  --mobile-text: #ffffff;
+  --mobile-muted: rgba(255, 255, 255, 0.72);
+  --mobile-glass: rgba(255, 255, 255, 0.1);
+  --mobile-border: rgba(255, 255, 255, 0.16);
+
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  color: var(--mobile-text);
+  background-color: #101827;
+  background-image: var(--mobile-wallpaper);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+.mobile-landing *,
+.mobile-landing *::before,
+.mobile-landing *::after {
+  box-sizing: border-box;
+}
+
+.mobile-landing__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    180deg,
+    rgba(8, 15, 30, 0.25) 0%,
+    rgba(8, 15, 30, 0.55) 45%,
+    rgba(8, 15, 30, 0.88) 100%
+  );
+}
+
+.mobile-landing__content {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: 520px;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  margin-inline: auto;
+  padding: max(28px, env(safe-area-inset-top)) 24px
+    max(20px, env(safe-area-inset-bottom));
+}
+
+/* Header */
+
+.mobile-landing__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-landing__logo {
+  color: white;
+  font-size: 27px;
+  font-weight: 750;
+  letter-spacing: -1.5px;
+  text-decoration: none;
+}
+
+.mobile-landing__logo span {
+  color: #8eb8ff;
+}
+
+.mobile-landing__label {
+  padding: 7px 11px;
+
+  border: 1px solid var(--mobile-border);
+  border-radius: 999px;
+
+  background: var(--mobile-glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+/* Main content */
+
+.mobile-landing__main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  margin-block: 64px 48px;
+
+  text-align: center;
+
+  animation: mobile-fade-in 700ms ease both;
+}
+
+.mobile-landing__icon {
+  display: grid;
+  place-items: center;
+
+  width: 76px;
+  height: 76px;
+
+  margin-bottom: 28px;
+
+  border: 1px solid var(--mobile-border);
+  border-radius: 50%;
+
+  backdrop-filter: blur(8px);
+
+  background-image: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  background-size: 300%;
+  background-position: left;
+  animation: shimmer 3s ease-in-out forwards;
+}
+
+.mobile-landing__eyebrow {
+  margin: 0 0 16px;
+
+  color: var(--mobile-muted);
+
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.mobile-landing__eyebrow span {
+  margin-inline: 5px;
+  color: #8eb8ff;
+}
+
+.mobile-landing__main h1 {
+  max-width: 390px;
+
+  margin: 0;
+
+  color: white;
+
+  font-size: clamp(32px, 8vw, 43px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -1.8px;
+}
+
+.mobile-landing__description {
+  max-width: 360px;
+
+  margin: 18px 0 0;
+
+  color: var(--mobile-muted);
+
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Contact panel */
+
+.mobile-landing__contact {
+  width: 100%;
+
+  margin-top: 40px;
+  padding: 22px;
+
+  border: 1px solid var(--mobile-border);
+  border-radius: 18px;
+
+  background: rgba(12, 23, 42, 0.2);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+
+  text-align: left;
+}
+
+.mobile-landing__contact-heading h2 {
+  margin: 0;
+
+  color: white;
+
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.3px;
+}
+
+.mobile-landing__contact-heading p {
+  margin: 7px 0 0;
+
+  color: var(--mobile-muted);
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Links */
+
+.mobile-landing__links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+
+  margin-top: 20px;
+}
+
+.mobile-landing__link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  min-width: 0;
+  min-height: 52px;
+  padding: 12px;
+
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+
+  color: white;
+  background: rgba(255, 255, 255, 0.07);
+
+  text-decoration: none;
+
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.mobile-landing__link:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+}
+
+.mobile-landing__link:focus-visible {
+  outline: 2px solid #8eb8ff;
+  outline-offset: 3px;
+}
+
+.mobile-landing__link-icon {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+  color: rgb(0, 115, 231);
+  background: rgb(255, 255, 255);
+}
+
+.mobile-landing__link-label {
+  flex: 1;
+  min-width: 0;
+
+  overflow: hidden;
+
+  font-size: 12px;
+  font-weight: 550;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobile-landing__link-arrow {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Footer */
+
+.mobile-landing__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 10px;
+  letter-spacing: 0.2px;
+
+  text-align: center;
+}
+
+.mobile-landing__footer-divider {
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Entrance animation */
+
+@keyframes mobile-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: right;
+  }
+}
+/* Very small screens */
+
+@media (max-width: 360px) {
+  .mobile-landing__content {
+    padding-inline: 18px;
+  }
+
+  .mobile-landing__contact {
+    padding: 17px;
+  }
+
+  .mobile-landing__links {
+    gap: 8px;
+  }
+
+  .mobile-landing__link {
+    gap: 7px;
+    padding: 8px;
+  }
+
+  .mobile-landing__link-label {
+    font-size: 11px;
+  }
+}
