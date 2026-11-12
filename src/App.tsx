@@ -1,13 +1,11 @@
-import "@/index.css";
-
 import Dock from "@/components/system/Dock";
 import Window from "@/components/system/Window";
 import Navbar from "@/components/system/Navbar";
+import Wallpaper from "./components/system/Wallpaper";
 import ControlCenter from "./components/system/ControlCenter/ControlCenter";
 
 import { useOS } from "@/context/OSContext";
 import { useWallpaper } from "@/context/WallpaperContext";
-import Wallpaper from "./components/system/Wallpaper";
 
 function Desktop() {
   const { state } = useOS();
